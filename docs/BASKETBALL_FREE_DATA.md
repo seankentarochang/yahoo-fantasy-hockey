@@ -76,3 +76,9 @@ tests the fixed two-season blend and positional replacement method across five
 seasons. Use `research value-backtest` and `research value-rank`; source-scoped
 manual adjustments live in `basketball/value_adjustments.json`. This experiment
 also remains separate from live drafting.
+
+The [availability normalization experiment](BASKETBALL_AVAILABILITY_RESULTS.md)
+removes games floors, learns workload including zero-game outcomes, and tests
+dated preseason GP forecasts separately. Use `research availability-backtest`
+and `research availability-rank`. Games calibration improves, but the draft
+results still favor retaining the expert source.

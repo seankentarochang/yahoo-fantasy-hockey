@@ -1,0 +1,545 @@
+{
+  "version": 1,
+  "comparison_only": true,
+  "independent_holdout": false,
+  "decision_sha256": "5715ca26b568cbf64731008204c74247b29d65b278172f6a60a0c475702901f0",
+  "selection_sha256": "09157f957d93020fd41b8205e8dbcad56f180280cdb398b73d81b203d22cca93",
+  "selected_alpha": 10,
+  "summaries": {
+    "2025": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22905.708333333332,
+        "mean_gain_pct_vs_espn": -0.05211750699439382,
+        "paired_win_rate": 0.5208333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9791666666666666,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "Rotoworld": {
+        "drafts": 48,
+        "mean_total_points": 22770.1875,
+        "mean_gain_pct_vs_espn": -0.40471583392654964,
+        "paired_win_rate": 0.4375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "availability_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 20076.791666666668,
+        "mean_gain_pct_vs_espn": -12.252969161266751,
+        "paired_win_rate": 0.0625,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.125
+      },
+      "availability_vor": {
+        "drafts": 48,
+        "mean_total_points": 19901.6875,
+        "mean_gain_pct_vs_espn": -12.842324882223455,
+        "paired_win_rate": 0.125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.0625
+      },
+      "coverage_guard_vor": {
+        "drafts": 48,
+        "mean_total_points": 21818.145833333332,
+        "mean_gain_pct_vs_espn": -4.461098103820739,
+        "paired_win_rate": 0.2708333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "dated_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 21582.958333333332,
+        "mean_gain_pct_vs_espn": -5.67945386835322,
+        "paired_win_rate": 0.3125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "dated_games_vor": {
+        "drafts": 48,
+        "mean_total_points": 21556.770833333332,
+        "mean_gain_pct_vs_espn": -5.694816793847677,
+        "paired_win_rate": 0.25,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 23014.625,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9809027777777778,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 21014.354166666668,
+        "mean_gain_pct_vs_espn": -7.942504909920898,
+        "paired_win_rate": 0.22916666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.4583333333333333
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 20970.958333333332,
+        "mean_gain_pct_vs_espn": -8.372146734739674,
+        "paired_win_rate": 0.16666666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.5208333333333334
+      },
+      "no_floor_vor": {
+        "drafts": 48,
+        "mean_total_points": 20596.8125,
+        "mean_gain_pct_vs_espn": -9.79889456429415,
+        "paired_win_rate": 0.16666666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.6875
+      }
+    },
+    "2026": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 23319.270833333332,
+        "mean_gain_pct_vs_espn": 8.990466860084428,
+        "paired_win_rate": 0.7708333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.041666666666666664
+      },
+      "availability_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 19426.604166666668,
+        "mean_gain_pct_vs_espn": -9.284098516072758,
+        "paired_win_rate": 0.3125,
+        "paired_tie_rate": 0.020833333333333332,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.1666666666666667
+      },
+      "availability_vor": {
+        "drafts": 48,
+        "mean_total_points": 11394.416666666666,
+        "mean_gain_pct_vs_espn": -46.685547136852236,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4
+      },
+      "coverage_guard_vor": {
+        "drafts": 48,
+        "mean_total_points": 18930.645833333332,
+        "mean_gain_pct_vs_espn": -11.367753136404882,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9861111111111112,
+        "mean_zero_games": 0.25
+      },
+      "dated_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22036.583333333332,
+        "mean_gain_pct_vs_espn": 2.857789845161673,
+        "paired_win_rate": 0.5833333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9826388888888888,
+        "mean_zero_games": 0.20833333333333334
+      },
+      "dated_games_vor": {
+        "drafts": 48,
+        "mean_total_points": 21558.916666666668,
+        "mean_gain_pct_vs_espn": 0.8044981599105908,
+        "paired_win_rate": 0.4583333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.20833333333333334
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 21541.354166666668,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9670138888888888,
+        "mean_zero_games": 0.5625
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 11055.708333333334,
+        "mean_gain_pct_vs_espn": -48.34635456495031,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 3.7708333333333335
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 17773.416666666668,
+        "mean_gain_pct_vs_espn": -16.987205765428126,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.9583333333333334
+      },
+      "no_floor_vor": {
+        "drafts": 48,
+        "mean_total_points": 12358.979166666666,
+        "mean_gain_pct_vs_espn": -42.18717528050494,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 3.1666666666666665
+      }
+    }
+  },
+  "games_metrics": {
+    "2025": {
+      "nhl_floor": {
+        "all": {
+          "players": 542,
+          "mae_games": 22.677121771217713,
+          "rmse_games": 28.663185949616416,
+          "bias_games": 16.066051660516607
+        },
+        "zero": {
+          "players": 118,
+          "mae_games": 44.88135593220339,
+          "rmse_games": 45.705698194619316,
+          "bias_games": 44.88135593220339
+        },
+        "nonzero": {
+          "players": 424,
+          "mae_games": 16.49764150943396,
+          "rmse_games": 21.652929123392095,
+          "bias_games": 8.04669811320755
+        }
+      },
+      "no_floor": {
+        "all": {
+          "players": 542,
+          "mae_games": 18.1450184501845,
+          "rmse_games": 23.814877981718336,
+          "bias_games": 7.640221402214025
+        },
+        "zero": {
+          "players": 118,
+          "mae_games": 24.123728813559325,
+          "rmse_games": 29.672671899023836,
+          "bias_games": 24.123728813559325
+        },
+        "nonzero": {
+          "players": 424,
+          "mae_games": 16.4811320754717,
+          "rmse_games": 21.907787019127966,
+          "bias_games": 3.0528301886792493
+        }
+      },
+      "learned": {
+        "all": {
+          "players": 542,
+          "mae_games": 16.468396659519147,
+          "rmse_games": 21.11237533090881,
+          "bias_games": -0.591902168700286
+        },
+        "zero": {
+          "players": 118,
+          "mae_games": 16.604757280844183,
+          "rmse_games": 22.06723716726756,
+          "bias_games": 16.604757280844183
+        },
+        "nonzero": {
+          "players": 424,
+          "mae_games": 16.430447241320195,
+          "rmse_games": 20.83885429516883,
+          "bias_games": -5.377764940035775
+        }
+      }
+    },
+    "2026": {
+      "nhl_floor": {
+        "all": {
+          "players": 558,
+          "mae_games": 23.906451612903226,
+          "rmse_games": 29.746263883952945,
+          "bias_games": 15.775985663082439
+        },
+        "zero": {
+          "players": 121,
+          "mae_games": 46.09090909090909,
+          "rmse_games": 47.188095571196385,
+          "bias_games": 46.09090909090909
+        },
+        "nonzero": {
+          "players": 437,
+          "mae_games": 17.763844393592677,
+          "rmse_games": 22.655926023486515,
+          "bias_games": 7.382151029748285
+        }
+      },
+      "no_floor": {
+        "all": {
+          "players": 558,
+          "mae_games": 19.325089605734767,
+          "rmse_games": 24.971308266871798,
+          "bias_games": 7.107885304659502
+        },
+        "zero": {
+          "players": 121,
+          "mae_games": 23.360330578512396,
+          "rmse_games": 30.619774305379796,
+          "bias_games": 23.360330578512396
+        },
+        "nonzero": {
+          "players": 437,
+          "mae_games": 18.207780320366133,
+          "rmse_games": 23.165108300263334,
+          "bias_games": 2.6077803203661363
+        }
+      },
+      "learned": {
+        "all": {
+          "players": 558,
+          "mae_games": 17.850562133725763,
+          "rmse_games": 22.729454949575555,
+          "bias_games": -0.11873686499175087
+        },
+        "zero": {
+          "players": 121,
+          "mae_games": 17.75133185297464,
+          "rmse_games": 24.842137653869695,
+          "bias_games": 17.75133185297464
+        },
+        "nonzero": {
+          "players": 437,
+          "mae_games": 17.878037794986373,
+          "rmse_games": 22.10881887357252,
+          "bias_games": -5.066742162186106
+        }
+      }
+    }
+  },
+  "coverage": {
+    "2025": {
+      "modeled": 488,
+      "dated": 272
+    },
+    "2026": {
+      "modeled": 501,
+      "dated": 99
+    }
+  },
+  "draft_scenarios": 1008,
+  "paired_settings": 96,
+  "control_parity_verified": true,
+  "protocol_sha256": "a0f76494769c9ac6e6e6356649264050e7f0184272bd8205071f639aa2389365",
+  "code_sha256": {
+    "availability_research.py": "3be740f4dd3cd2a35a95b3a9591cae97ad452dda986dd789d8daaf0046ef24ad",
+    "value_board.py": "d653f71c1140b07ba750dc412f9d14b814daf4d4a2803187680407204af44bd7",
+    "empirical.py": "c048faaf1329dec583b0ec7f859b514b5810fc00cbb5f61c75ed099f72f7bd94",
+    "empirical_draft.py": "1c14bb8e02230841a631ce77d05bd7f0b87956ac7c57e0e8042cb9e22b96259c",
+    "planner.py": "1233f761f61298b08c349a6804f5379e7c5a652800a167a107cf970d9311bafa",
+    "source_backtest.py": "4c46328dbdc47320f10d0bd4cd4ba1d39ac93a9fa499d2c6e732c2e8e0f32f32",
+    "ranking_library.py": "6a936a01c7f8115359831aa5c7d48238448c97a21fd384b283531d89ebdc81b1",
+    "config.py": "b3cae2a7ef042ca069321ffa5fe1d7ac5b1bf25992797df62cf9aac323479161",
+    "strategy_lab.py": "384de8bd8794b4e546fb40a3361d0d8ab99e1fddcf090ee9b978cf4badfa4c36",
+    "backtest.py": "048224f9295a144cdbfc0ef9f449e03fde8d16562789c5eb28d2e8c2ee4302db",
+    "model.py": "f5d9261d710be638a2711e4c07ab85e1fada9c4989e642b4722be4a651fa9b5a",
+    "research_board.py": "ee3213c9bd6015043dcb36f897710dd431f6a04eefe4b69f9ab445e454602197"
+  },
+  "data_sha256": "fdb0204dca495bf42da6ca003fcca2529f2b895647d27d463a67a64995b410dc",
+  "source_evidence": {
+    "2025": [
+      {
+        "id": "rotoworld-2025",
+        "sha256": "65802c4ee339d82a38e956bc4e56c6be724711122622e93725143b3e08c729ec",
+        "dates": {
+          "CreationDate": "2024-10-01T13:11:28-0500",
+          "ModDate": "2024-10-01T15:30:09-0500"
+        },
+        "url": "https://nbcsports.brightspotcdn.com/03/10/b09f526442aab7ad4db7ba3584ed/rotoworld-2024-25-fantasy-basketball-kit.pdf"
+      },
+      {
+        "id": "rotowire-2025",
+        "sha256": "2fd4ccdd4bdc919c3c02c65c2fb009b27f9bce84152365972751335a9d8d5d84",
+        "dates": {
+          "datePublished": "2024-10-11T14:34:00-07:00",
+          "dateModified": "2024-10-11T14:34:00-07:00"
+        },
+        "url": "https://www.rotowire.com/basketball/article/fantasy-basketball-points-league-rankings-2024-projections-85939"
+      }
+    ],
+    "2026": [
+      {
+        "id": "rotowire-2026",
+        "sha256": "a1e763353a03b2f3b0c075bd85a07a4a37a4833ca9c633a094c08d34a8aa02e7",
+        "dates": {
+          "datePublished": "2025-09-03T14:29:00-07:00",
+          "dateModified": "2025-09-03T14:29:00-07:00"
+        },
+        "url": "https://www.rotowire.com/basketball/article/fantasy-basketball-points-league-rankings-2025-26-nba-projections-95771"
+      }
+    ]
+  },
+  "current": {
+    "as_of": "2026-10-17T17:36:18.856809-04:00",
+    "inputs_sha256": "ccff9ab8e36b31ae927b8e07df803b5f300ab331257eb36e32eab127073983cb",
+    "model_sha256": "4979337974e3d5867ad208b47534b768700d9a0a6bfceff577548a8012b9ce27",
+    "ranked": 317,
+    "forward_covered": 317,
+    "banned": 12,
+    "training_samples": 3713,
+    "zero_target_samples": 813,
+    "examples": [
+      {
+        "rank": 1,
+        "name": "Nikola Jokic",
+        "games": 73.0,
+        "learned_games": 63.63677088337995,
+        "old_floor_games": 66.0,
+        "forward_games": {
+          "ESPN": 72.0,
+          "Hashtag": 72.0,
+          "FantasyPros": 75.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 2,
+        "name": "Giannis Antetokounmpo",
+        "games": 69.66666666666667,
+        "learned_games": 44.15522788155826,
+        "old_floor_games": 60,
+        "forward_games": {
+          "ESPN": 67.0,
+          "Hashtag": 69.0,
+          "FantasyPros": 73.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 3,
+        "name": "Shai Gilgeous-Alexander",
+        "games": 74.66666666666667,
+        "learned_games": 63.36033695612416,
+        "old_floor_games": 69.60000000000001,
+        "forward_games": {
+          "ESPN": 76.0,
+          "Hashtag": 71.0,
+          "FantasyPros": 77.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 4,
+        "name": "Luka Doncic",
+        "games": 70.0,
+        "learned_games": 61.1387013414761,
+        "old_floor_games": 61.2,
+        "forward_games": {
+          "ESPN": 68.0,
+          "Hashtag": 68.0,
+          "FantasyPros": 74.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 5,
+        "name": "Jalen Johnson",
+        "games": 73.0,
+        "learned_games": 63.40215294984641,
+        "old_floor_games": 64.8,
+        "forward_games": {
+          "ESPN": 72.0,
+          "Hashtag": 72.0,
+          "FantasyPros": 75.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 6,
+        "name": "Jayson Tatum",
+        "games": 70.66666666666667,
+        "learned_games": 39.55708665922419,
+        "old_floor_games": 40,
+        "forward_games": {
+          "ESPN": 70.0,
+          "Hashtag": 68.0,
+          "FantasyPros": 74.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 7,
+        "name": "Victor Wembanyama",
+        "games": 68.66666666666667,
+        "learned_games": 56.16802185478264,
+        "old_floor_games": 60.400000000000006,
+        "forward_games": {
+          "ESPN": 67.0,
+          "Hashtag": 66.0,
+          "FantasyPros": 73.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 8,
+        "name": "Kevin Durant",
+        "games": 72.33333333333333,
+        "learned_games": 69.37914608324384,
+        "old_floor_games": 74.80000000000001,
+        "forward_games": {
+          "ESPN": 72.0,
+          "Hashtag": 70.0,
+          "FantasyPros": 75.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 9,
+        "name": "Tyrese Maxey",
+        "games": 72.0,
+        "learned_games": 66.5195950266467,
+        "old_floor_games": 66.4,
+        "forward_games": {
+          "ESPN": 71.0,
+          "Hashtag": 70.0,
+          "FantasyPros": 75.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 10,
+        "name": "Cade Cunningham",
+        "games": 70.33333333333333,
+        "learned_games": 61.55968773272723,
+        "old_floor_games": 65.2,
+        "forward_games": {
+          "ESPN": 69.0,
+          "Hashtag": 68.0,
+          "FantasyPros": 74.0
+        },
+        "injury_opportunity_cap": null
+      },
+      {
+        "rank": 219,
+        "name": "Jimmy Butler III",
+        "games": 41.5,
+        "learned_games": 45.36510991166622,
+        "old_floor_games": 41.400000000000006,
+        "forward_games": {
+          "ESPN": 39.0,
+          "FantasyPros": 44.0
+        },
+        "injury_opportunity_cap": 50
+      }
+    ]
+  }
+}
