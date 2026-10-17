@@ -328,7 +328,7 @@ class Room:
         else:
             raise ValueError("Unsupported draft API action")
 
-    def execute(self, action, name, bid=None):
+    def execute(self, action, name, bid=None, expert_source=None):
         reconcile(self)
         if read_json(path(self.cfg, "draft-write.json")):
             raise ValueError("Unconfirmed draft command exists; use draft status/reconcile before retrying")
@@ -346,6 +346,26 @@ class Room:
         bans.require(self.cfg, player, evidence.get("team"))
         if "fantasy_state" in evidence and evidence["fantasy_state"] != {k: player.get(k) for k in ("status", "active", "team")}:
             raise ValueError("Player status changed during availability verification; refresh before drafting")
+        selection = None
+        if expert_source is not None:
+            if action != "pick":
+                raise ValueError("Expert timing applies to live picks, not ESPN autopick queues")
+            policy_board = expert_board(model, expert_source, limit=None)
+            selected, _ = availability.verified_choice(model, policy_board["players"])
+            if selected["id"] != player["id"]:
+                raise ValueError("Expert/timing/availability choice changed; recompute before selecting")
+            selection = {"candidate": selected, "sources": policy_board["sources"], "timing": policy_board["timing"]}
+            # Rechecking candidates can consume clock time. Drain events and
+            # enforce the same turn and exact pick before creating any intent.
+            expected_pick = self.next_pick()
+            self.refresh()
+            model = self.model()
+            player = model.find(name)
+            bans.require(self.cfg, player, evidence.get("team"))
+            if self.next_pick() != expected_pick:
+                raise ValueError("Draft turn changed during expert verification")
+            if "fantasy_state" in evidence and evidence["fantasy_state"] != {k: player.get(k) for k in ("status", "active", "team")}:
+                raise ValueError("Player status changed during expert verification")
         self.check(model, action, player, bid)
         if action == "queue" and player["id"] in self.queue:
             return {"verified": True, "action": action, "id": player["id"], "already_present": True, "transport": "api"}
@@ -357,6 +377,8 @@ class Room:
                   "pick": self.next_pick(),
                   "at": now(self.cfg).isoformat()}
         intent["availability"] = evidence
+        if selection is not None:
+            intent["selection"] = selection
         write_json(path(self.cfg, "draft-write.json"), intent)
         self.send(command)
         self.wait_for(lambda: confirmed(self, intent))
@@ -435,11 +457,12 @@ def run(cfg, args):
             if args.execute and room.state == 1 and room.selecting == cfg["team_id"] and room.seconds_left() >= 25:
                 model = room.model()
                 if expert:
-                    candidate, checks = availability.verified_choice(model, expert_board(model, args.source)["players"])
+                    candidate, checks = availability.verified_choice(model, expert_board(model, args.source, limit=None)["players"])
                 else:
                     candidate, checks = availability.verified_choice(model)
                 print(json.dumps({"availability_checks": checks}, ensure_ascii=False), flush=True)
-                print(json.dumps(room.execute("pick", candidate["id"]), ensure_ascii=False), flush=True)
+                print(json.dumps(room.execute("pick", candidate["id"], expert_source=args.source) if expert
+                                 else room.execute("pick", candidate["id"]), ensure_ascii=False), flush=True)
             room.receive(1)
         model = room.model()
         result = room.status()

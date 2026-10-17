@@ -86,6 +86,7 @@ class DraftApiTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.cfg = load()
+        self.cfg['draft'].pop('selection_policy', None)  # Protocol fixtures do not include a draft order.
         self.cfg.update(_data=self.tmp.name, teams=2, slots={"PG": 1, "SG": 1, "UTIL": 1, "BE": 1})
         self.cfg["scoring"] = {"PTS": 1}
         self.players = [athlete(1, ("PG", "SG"), ppg=35), athlete(2, ("PG",)), athlete(3, ("SG",))]
@@ -221,18 +222,18 @@ class DraftApiTests(unittest.TestCase):
         original_execute = room.execute
         original_receive = room.receive
         sent = room.socket.sent
-        def execute(*args):
-            result = original_execute(*args)
+        def execute(*args, **kwargs):
+            result = original_execute(*args, **kwargs)
             room.state = 2
             return result
         candidates = [{'id': 2, 'name': 'Player 2'}, {'id': 1, 'name': 'Player 1'}]
         with patch('basketball.draft_api.Room', return_value=room), patch.object(Room, '__enter__', return_value=room), \
-                patch('basketball.draft_api.expert_board', return_value={'players': candidates}) as expert, \
-                patch('basketball.availability.check', side_effect=[{'allowed': False}, {'allowed': True}]) as check, \
+                patch('basketball.draft_api.expert_board', return_value={'players': candidates, 'sources': [], 'timing': {}}) as expert, \
+                patch('basketball.availability.check', side_effect=[{'allowed': False}, {'allowed': True}]*2) as check, \
                 patch.object(room, 'execute', side_effect=execute), \
                 patch.object(room, 'receive', side_effect=lambda timeout=1: False if room.state == 2 else original_receive(timeout)), patch('builtins.print'):
             result = api_run(self.cfg, args)
-        self.assertEqual([call.args[1]['id'] for call in check.call_args_list], [2, 1])
+        self.assertEqual([call.args[1]['id'] for call in check.call_args_list], [2, 1, 2, 1])
         self.assertEqual(sent.count('SELECT 1\n'), 1)
         self.assertFalse(any(s.startswith('SELECT 2') for s in sent))
         self.assertEqual(result['state'], 'complete')

@@ -19,6 +19,7 @@ class AdvisorTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.cfg = load()
+        self.cfg['draft'].pop('selection_policy', None)  # These fixtures exercise the original greedy board.
         self.cfg.update(_data=self.tmp.name, teams=2, slots={'UTIL': 1, 'BE': 2}, position_limits={})
         self.players = [dict(athlete(i), draft_rank=i, active=True) for i in range(1, 30)]
         self.model = Model(self.cfg, snapshot(self.players))

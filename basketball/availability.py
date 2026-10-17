@@ -10,6 +10,7 @@ import urllib.request
 
 from .config import instant, now, path, read_json, write_json
 from . import bans
+from .injury_returns import assess as injury_assessment
 
 SITE = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/"
 PROFILE = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/athletes/"
@@ -121,6 +122,9 @@ def check(cfg, player, refresh=False, sources=None):
             result["injuries"] = sorted(records.values(), key=fingerprint)
             result["team"] = team
             result["source_as_of"] = {"roster": roster["timestamp"], "injuries": report["timestamp"]}
+            if cfg.get("draft", {}).get("injury_policy"):
+                from .injury_returns import catalog
+                catalog(cfg, sources=sources)
             if any(r["designation"] == "OFS" for r in result["injuries"]):
                 result.update(status="blocked", reasons=["Current structured injury report lists out-for-season"])
             elif result["injuries"] or player.get("status", "UNKNOWN") not in {"ACTIVE"}:
@@ -129,6 +133,16 @@ def check(cfg, player, refresh=False, sources=None):
                 result.update(status="review", reasons=["Fantasy and current public NBA teams disagree"])
             else:
                 result.update(status="clear", allowed=True, reasons=["Active public profile, current roster membership and no listed injury concern"])
+            # A verified temporary injury can be draftable at the right price.
+            # Inactivity, OFS, unknown evidence and team conflicts stay blocked.
+            if (result["status"] == "review" and result["injuries"] and str(player.get("team", team)) in {team, "0"}
+                    and player.get("status") != "SUSPENSION"
+                    and not any("susp" in str(r.get("status", "")).lower() or "susp" in str(r.get("designation", "")).lower()
+                                for r in result["injuries"])):
+                assessment = injury_assessment(cfg, result["injuries"])
+                result["return_assessment"] = assessment
+                if assessment and assessment["allowed"]:
+                    result.update(status="injury_eligible", allowed=True, reasons=[assessment["reason"]])
         blocked = bans.reason(cfg, player, result.get("team"))
         if blocked:
             result.update(status="blocked", allowed=False, reasons=[blocked])
@@ -179,4 +193,4 @@ def verified_choice(model, candidates=None):
         checks.append(result)
         if result["allowed"]:
             return candidate, checks
-    raise ValueError("No verified available candidate among the top 20 legal recommendations; inspect draft availability")
+    raise ValueError("No verified available candidate among the supplied legal recommendations; inspect draft availability")
