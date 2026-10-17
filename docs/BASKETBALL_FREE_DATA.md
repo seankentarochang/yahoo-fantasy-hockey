@@ -88,3 +88,9 @@ documented prior injuries and compares games/season-output models with and
 without those features. Run `research injury-backtest`. The pinned transaction
 archive ends May 2025; it supports three earlier-season tests and explicitly
 rejects current forecasts with incomplete coverage.
+
+The [injury-aware scoring experiment](BASKETBALL_INJURY_SCORING_RESULTS.md)
+adds injury history to box-score rates/minutes and combines these with locked
+games forecasts. `research injury-scoring-backtest` evaluates actual prediction
+errors separately for season totals, fantasy points/game and individual stats.
+The full adjustment does not improve accuracy on these three test seasons.
