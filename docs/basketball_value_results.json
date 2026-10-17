@@ -1,0 +1,504 @@
+{
+  "version": 1,
+  "decision_sha256": "feb45da93c617c75fac3ea29bcf45d7202e73bb2a1df91c1dfb25c8bc7c77052",
+  "summaries": {
+    "2019": {
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 20699.4375,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.20833333333333334
+      },
+      "nhl_total": {
+        "drafts": 48,
+        "mean_total_points": 25532.604166666668,
+        "mean_gain_pct_vs_espn": 24.381588169082207,
+        "paired_win_rate": 1,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 25705.8125,
+        "mean_gain_pct_vs_espn": 25.475203153718056,
+        "paired_win_rate": 1,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 25549.333333333332,
+        "mean_gain_pct_vs_espn": 24.435455051121206,
+        "paired_win_rate": 0.9791666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.020833333333333332
+      }
+    },
+    "2023": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22662.291666666668,
+        "mean_gain_pct_vs_espn": 0.6569745297231895,
+        "paired_win_rate": 0.4583333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9670138888888888,
+        "mean_zero_games": 0.08333333333333333
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 22614.6875,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.96875,
+        "mean_zero_games": 0.08333333333333333
+      },
+      "nhl_total": {
+        "drafts": 48,
+        "mean_total_points": 20888.0,
+        "mean_gain_pct_vs_espn": -7.090194073347339,
+        "paired_win_rate": 0.14583333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 19984.041666666668,
+        "mean_gain_pct_vs_espn": -11.074149770440803,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.7916666666666667
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 21822.395833333332,
+        "mean_gain_pct_vs_espn": -2.935520089435725,
+        "paired_win_rate": 0.3125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.8958333333333334
+      }
+    },
+    "2024": {
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 24471.583333333332,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9427083333333334,
+        "mean_zero_games": 0.041666666666666664
+      },
+      "nhl_total": {
+        "drafts": 48,
+        "mean_total_points": 22812.666666666668,
+        "mean_gain_pct_vs_espn": -5.911660225949811,
+        "paired_win_rate": 0.3333333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.7291666666666666
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 21109.020833333332,
+        "mean_gain_pct_vs_espn": -13.242093791105455,
+        "paired_win_rate": 0.0625,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.6458333333333334
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22303.541666666668,
+        "mean_gain_pct_vs_espn": -8.208222728791542,
+        "paired_win_rate": 0.22916666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9861111111111112,
+        "mean_zero_games": 0.6041666666666666
+      }
+    },
+    "2025": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22905.708333333332,
+        "mean_gain_pct_vs_espn": -0.05211750699439382,
+        "paired_win_rate": 0.5208333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9791666666666666,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "Rotoworld": {
+        "drafts": 48,
+        "mean_total_points": 22770.1875,
+        "mean_gain_pct_vs_espn": -0.40471583392654964,
+        "paired_win_rate": 0.4375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 23014.625,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9809027777777778,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "nhl_total": {
+        "drafts": 48,
+        "mean_total_points": 21960.8125,
+        "mean_gain_pct_vs_espn": -4.174264536662096,
+        "paired_win_rate": 0.375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.020833333333333332
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 21014.354166666668,
+        "mean_gain_pct_vs_espn": -7.942504909920898,
+        "paired_win_rate": 0.22916666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.4583333333333333
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 20970.958333333332,
+        "mean_gain_pct_vs_espn": -8.372146734739674,
+        "paired_win_rate": 0.16666666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.5208333333333334
+      }
+    },
+    "2026": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 23319.270833333332,
+        "mean_gain_pct_vs_espn": 8.990466860084428,
+        "paired_win_rate": 0.7708333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.041666666666666664
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 21541.354166666668,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9670138888888888,
+        "mean_zero_games": 0.5625
+      },
+      "nhl_total": {
+        "drafts": 48,
+        "mean_total_points": 10241.145833333334,
+        "mean_gain_pct_vs_espn": -52.21840212379211,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4.0625
+      },
+      "nhl_vor": {
+        "drafts": 48,
+        "mean_total_points": 11055.708333333334,
+        "mean_gain_pct_vs_espn": -48.34635456495031,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 3.7708333333333335
+      },
+      "nhl_vor_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 17773.416666666668,
+        "mean_gain_pct_vs_espn": -16.987205765428126,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.9583333333333334
+      }
+    }
+  },
+  "earlier_empirical": {
+    "2025": {
+      "learned_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 24079.854166666668,
+        "mean_gain_pct_vs_espn": 5.233419847387739,
+        "paired_win_rate": 0.6666666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "learned_per_game": {
+        "drafts": 48,
+        "mean_total_points": 21098.270833333332,
+        "mean_gain_pct_vs_espn": -7.9963358065082595,
+        "paired_win_rate": 0.14583333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "learned_total": {
+        "drafts": 48,
+        "mean_total_points": 23490.8125,
+        "mean_gain_pct_vs_espn": 2.577229024210537,
+        "paired_win_rate": 0.6041666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.16666666666666666
+      }
+    },
+    "2026": {
+      "learned_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 17769.145833333332,
+        "mean_gain_pct_vs_espn": -16.869841371774523,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.0208333333333333
+      },
+      "learned_per_game": {
+        "drafts": 48,
+        "mean_total_points": 9264.020833333334,
+        "mean_gain_pct_vs_espn": -56.60063845522962,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4
+      },
+      "learned_total": {
+        "drafts": 48,
+        "mean_total_points": 9649.5,
+        "mean_gain_pct_vs_espn": -54.83835658826457,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4.0625
+      }
+    }
+  },
+  "comparison_only": true,
+  "independent_holdout": false,
+  "metric": "Actual season fantasy points of drafted rosters, not weekly H2H wins",
+  "parameters": {
+    "version": 1,
+    "production_weights": [
+      0.65,
+      0.35
+    ],
+    "games_weights": [
+      0.8,
+      0.2
+    ],
+    "minimum_history_games": 20,
+    "small_sample_games": 60,
+    "established_games": 100,
+    "established_floor": 60,
+    "other_floor": 40,
+    "games_cap": 80
+  },
+  "data_sha256": "fdb0204dca495bf42da6ca003fcca2529f2b895647d27d463a67a64995b410dc",
+  "protocol_sha256": "69733ca4111c255e1ce99da9dce23c12b67816bc8357d9013b33d2836c1aaedb",
+  "code_sha256": {
+    "value_board.py": "d653f71c1140b07ba750dc412f9d14b814daf4d4a2803187680407204af44bd7",
+    "empirical.py": "c048faaf1329dec583b0ec7f859b514b5810fc00cbb5f61c75ed099f72f7bd94",
+    "empirical_draft.py": "1c14bb8e02230841a631ce77d05bd7f0b87956ac7c57e0e8042cb9e22b96259c",
+    "planner.py": "1233f761f61298b08c349a6804f5379e7c5a652800a167a107cf970d9311bafa",
+    "source_backtest.py": "4c46328dbdc47320f10d0bd4cd4ba1d39ac93a9fa499d2c6e732c2e8e0f32f32",
+    "ranking_library.py": "6a936a01c7f8115359831aa5c7d48238448c97a21fd384b283531d89ebdc81b1",
+    "config.py": "b3cae2a7ef042ca069321ffa5fe1d7ac5b1bf25992797df62cf9aac323479161",
+    "strategy_lab.py": "384de8bd8794b4e546fb40a3361d0d8ab99e1fddcf090ee9b978cf4badfa4c36",
+    "backtest.py": "048224f9295a144cdbfc0ef9f449e03fde8d16562789c5eb28d2e8c2ee4302db",
+    "model.py": "f5d9261d710be638a2711e4c07ab85e1fada9c4989e642b4722be4a651fa9b5a"
+  },
+  "preseason_inputs": {
+    "2019": "fa4e9d144d9ea9861c0224a2909712d50cb209cbce9a34573c10c93aba54762e",
+    "2023": "e364b4f380b24a9adc66d80a13f83d3d473d88aa6ebac0e063ea263e62aa1365",
+    "2024": "c0da9b9621b206830b5d4699f5b76aef757f28dcf5e9713845c7af2311fcaf37",
+    "2025": "99e27dd4c9f956eaccd098983283fe1466e6a321b64c3726cafda532ad2addf5",
+    "2026": "d5c96faec10f4989933eae60f40d5381ede026164f99c6bc7b012bc79627e01b"
+  },
+  "replacement": {
+    "2019": {
+      "PG": {
+        "points": 1120.640674394099,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 6443
+      },
+      "SG": {
+        "points": 1310.1285976729944,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 3033
+      },
+      "SF": {
+        "points": 1084.7630934150077,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 6591
+      },
+      "PF": {
+        "points": 1324.845879120879,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 3917376
+      },
+      "C": {
+        "points": 846.2765957446808,
+        "depth": 32,
+        "actual_depth": 32,
+        "player_id": 2999409
+      }
+    },
+    "2023": {
+      "PG": {
+        "points": 1280.9999999999998,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4592492
+      },
+      "SG": {
+        "points": 1410.3145631067964,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 3064447
+      },
+      "SF": {
+        "points": 1144.5930069930073,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 3033
+      },
+      "PF": {
+        "points": 1057.6037328094303,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4278031
+      },
+      "C": {
+        "points": 1345.4932065217395,
+        "depth": 32,
+        "actual_depth": 32,
+        "player_id": 2531367
+      }
+    },
+    "2024": {
+      "PG": {
+        "points": 1268.609271523179,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4432166
+      },
+      "SG": {
+        "points": 1455.219512195122,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 3934673
+      },
+      "SF": {
+        "points": 1139.6571428571428,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 6579
+      },
+      "PF": {
+        "points": 1129.5628902765388,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 2490620
+      },
+      "C": {
+        "points": 1355.0421644413213,
+        "depth": 32,
+        "actual_depth": 32,
+        "player_id": 4396971
+      }
+    },
+    "2025": {
+      "PG": {
+        "points": 1360.0,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4683678
+      },
+      "SG": {
+        "points": 1594.775,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 2595516
+      },
+      "SF": {
+        "points": 1118.0000000000002,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 5104155
+      },
+      "PF": {
+        "points": 1141.6901408450703,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4278077
+      },
+      "C": {
+        "points": 1415.0468380820014,
+        "depth": 32,
+        "actual_depth": 32,
+        "player_id": 3150844
+      }
+    },
+    "2026": {
+      "PG": {
+        "points": 1410.2374670184695,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4395626
+      },
+      "SG": {
+        "points": 1415.4658436213992,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4683692
+      },
+      "SF": {
+        "points": 1323.3991323210414,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4432848
+      },
+      "PF": {
+        "points": 1030.6618313689937,
+        "depth": 40,
+        "actual_depth": 40,
+        "player_id": 4592691
+      },
+      "C": {
+        "points": 1468.0,
+        "depth": 32,
+        "actual_depth": 32,
+        "player_id": 5105623
+      }
+    }
+  },
+  "scenarios": 1152,
+  "paired_settings": 240,
+  "current_board": {
+    "as_of": "2026-10-17T17:36:18.856809-04:00",
+    "modeled": 303,
+    "ranked": 317,
+    "base_input_sha256": "ccff9ab8e36b31ae927b8e07df803b5f300ab331257eb36e32eab127073983cb",
+    "sha256": "5c52e1fe33d073493e315577f9495b3a390eb1cf0d45e9dbe78ddb16e28e3330"
+  }
+}

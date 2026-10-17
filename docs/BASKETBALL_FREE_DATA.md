@@ -70,3 +70,9 @@ use the game logs to learn production instead of averaging publisher statistical
 rates. Its [separate protocol](BASKETBALL_EMPIRICAL_PROTOCOL.md) was committed before
 fitting. Run `research fit`, `research backtest` and `research rank` to reproduce
 that experiment. It remains comparison-only; the results do not justify deployment.
+
+An additional [NHL-style value-board experiment](BASKETBALL_VALUE_RESULTS.md)
+tests the fixed two-season blend and positional replacement method across five
+seasons. Use `research value-backtest` and `research value-rank`; source-scoped
+manual adjustments live in `basketball/value_adjustments.json`. This experiment
+also remains separate from live drafting.
