@@ -1,6 +1,9 @@
-# Comparison-only statistical ranking model, version 1
+# Comparison-only statistical ranking model, version 2
 
-Specified October 17, 2026 before generating this model's rankings. The user
+Version 1 was specified October 17, 2026 before its provisional rankings. Version
+2 is specified before generating revised rankings, following the user's request
+to find better free datasets. Changes concern source coverage, not outcome-driven
+parameter tuning. The user
 explicitly requested building and comparing first. This model is not an automatic
 draft source and must not change the scheduled draft or its selected board.
 
@@ -15,6 +18,24 @@ draft source and must not change the scheduled draft or its selected board.
 - The 30 complete rows in Hashtag Basketball's publicly accessible October 17
   projection preview. Use the published shooting makes/attempts; do not derive
   attempts by dividing rounded percentages or access subscriber-only data.
+- Basketball Reference's full 2026–27 Simple Projection System, including all
+  shooting makes and attempts per 36 minutes. Convert to per-minute rates. It
+  supplies neither projected games nor current rotation minutes; do not invent
+  either. Match unique normalized names, and retain unmatched identities.
+- FantasyPros' full public 2026–27 overall projection table supplies games and
+  minutes estimates. Its rounded shooting percentages do not supply makes or
+  attempts. Use this table only for playing-time forecasts, never to reconstruct
+  the missing shooting statistics. It is publisher consensus, not necessarily
+  independent of other forward sources.
+- Capture DARKO's full public Fantasy Lab inputs for inspection. Its July 2026
+  playing time/rosters are stale and its separately forecast components can
+  violate box-score identities. Do not include it in this initial combined
+  board. Report dates and quality findings rather than silently fixing numbers.
+- Download SportsDataverse's public player-game CSV archives separately for
+  expanded historical research. NBA IDs differ from ESPN IDs. Audit regular
+  season rows, DNPs, duplicate player/game keys, seasons and scoring components.
+  These historical outcomes are not preseason forecasts and are not evidence
+  of a blind backtest without dated preseason inputs.
 - Fresh public NBA rosters and injury estimates from ESPN, the NBA schedule
   already saved with the snapshot, and explicitly sourced NBA team previews.
 
@@ -27,9 +48,12 @@ do not revive a retired player using old statistics.
 
 1. Weight historical seasons newest to oldest 0.6 / 0.3 / 0.1. Estimate each
    stat per minute as weighted totals divided by weighted minutes.
-2. Average complete current forward projections by publisher when available:
-   ESPN plus Hashtag for its matched public rows, ESPN alone otherwise. Average
-   their per-minute stat rates, minutes per game and games forecasts separately.
+2. Average current statistical rates by available publisher: ESPN, Hashtag's
+   matched public rows, and the full Basketball Reference per-minute projections.
+   Average minutes per game and games separately using ESPN, matched Hashtag,
+   and matched FantasyPros opportunities. Basketball Reference contributes no
+   playing-time estimate; FantasyPros contributes no statistical rates. Retain
+   contributor lists separately so coverage is visible.
 3. Blend historical and forward per-minute rates. Historical weight is
    `min(0.65, weighted_minutes / (weighted_minutes + 750))`. Cap it at 0.35 for
    verified team changes or the explicitly researched team-role changes. This
