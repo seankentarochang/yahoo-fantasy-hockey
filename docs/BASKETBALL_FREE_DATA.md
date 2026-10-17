@@ -64,3 +64,9 @@ a grant of unrestricted rights to the underlying NBA observations.
 
 See [the prespecified model](BASKETBALL_RESEARCH_PROTOCOL.md) and
 [the resulting comparison](BASKETBALL_RESEARCH_RESULTS.md).
+
+The subsequent [data-trained model and draft backtests](BASKETBALL_EMPIRICAL_RESULTS.md)
+use the game logs to learn production instead of averaging publisher statistical
+rates. Its [separate protocol](BASKETBALL_EMPIRICAL_PROTOCOL.md) was committed before
+fitting. Run `research fit`, `research backtest` and `research rank` to reproduce
+that experiment. It remains comparison-only; the results do not justify deployment.

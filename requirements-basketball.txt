@@ -1,6 +1,8 @@
-# The basketball planners use the standard library; timezone data is needed on Windows.
+# The core basketball planners use the standard library; timezone data is needed on Windows.
 tzdata>=2025.2
 # Direct ESPN live draft API.
 websocket-client>=1.8,<2
 # Optional interactive ESPN login and browser fallback.
 playwright>=1.51,<2
+# Statistical research commands only; live drafting does not import NumPy.
+numpy>=1.26,<3
