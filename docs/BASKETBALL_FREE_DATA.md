@@ -82,3 +82,9 @@ removes games floors, learns workload including zero-game outcomes, and tests
 dated preseason GP forecasts separately. Use `research availability-backtest`
 and `research availability-rank`. Games calibration improves, but the draft
 results still favor retaining the expert source.
+
+The [injury-history experiment](BASKETBALL_INJURY_HISTORY_RESULTS.md) quantifies
+documented prior injuries and compares games/season-output models with and
+without those features. Run `research injury-backtest`. The pinned transaction
+archive ends May 2025; it supports three earlier-season tests and explicitly
+rejects current forecasts with incomplete coverage.

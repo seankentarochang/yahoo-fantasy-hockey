@@ -41,7 +41,7 @@ def parser():
     ranks.add_argument("--limit", type=int, default=200)
     ranks.add_argument("--csv")
     research = sub.add_parser("research", help="Comparison-only statistical board; never selects draft players")
-    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank"))
+    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest"))
     research.add_argument("--years", nargs="+", type=int, help="Completed ending seasons for public game logs")
     sheet = sub.add_parser("cheatsheet")
     sheet.add_argument("--out", default="BASKETBALL_DRAFT_SHEET.md")
@@ -245,6 +245,9 @@ def standings(model):
 def run(args):
     cfg = load(args.config)
     if args.command == "research":
+        if args.action == "injury-backtest":
+            from . import injury_research
+            return injury_research.experiment(cfg)
         if args.action in {"availability-backtest", "availability-rank"}:
             from . import availability_research
             return availability_research.experiment(cfg) if args.action=="availability-backtest" else availability_research.current(cfg)
