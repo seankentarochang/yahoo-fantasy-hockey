@@ -41,8 +41,11 @@ def parser():
     ranks.add_argument("--limit", type=int, default=200)
     ranks.add_argument("--csv")
     research = sub.add_parser("research", help="Comparison-only statistical board; never selects draft players")
-    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest", "injury-scoring-backtest", "expert-collect", "expert-backtest"))
+    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest", "injury-scoring-backtest", "expert-collect", "expert-backtest", "adp-mocks"))
     research.add_argument("--years", nargs="+", type=int, help="Completed ending seasons for public game logs")
+    research.add_argument("--slot", type=int, help="ADP rehearsal snake slot; omit to test every position")
+    research.add_argument("--count", type=int, default=25, help="Seeds per ADP rehearsal position and field")
+    research.add_argument("--refresh-market", action="store_true", help="Refresh public ESPN ADP for rehearsals")
     sheet = sub.add_parser("cheatsheet")
     sheet.add_argument("--out", default="BASKETBALL_DRAFT_SHEET.md")
     for cmd in ("lineup", "stream"):
@@ -245,6 +248,9 @@ def standings(model):
 def run(args):
     cfg = load(args.config)
     if args.command == "research":
+        if args.action == "adp-mocks":
+            from . import adp_mocks
+            return adp_mocks.run(cfg, args.slot, args.count, args.refresh_market)
         if args.action in {"expert-collect", "expert-backtest"}:
             from . import expert_boards
             return expert_boards.collect(cfg) if args.action == "expert-collect" else expert_boards.experiment(cfg)

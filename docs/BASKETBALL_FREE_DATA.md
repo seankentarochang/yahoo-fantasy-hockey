@@ -100,3 +100,10 @@ tests six publishers across four seasons, with direct/timed picks, a fixed
 publisher consensus, equal top-50 coverage and an alternate opponent field.
 Run `research expert-collect` then `research expert-backtest`. Board format,
 depth and opponent assumptions materially affect the results.
+
+The [current ADP rehearsals](BASKETBALL_ADP_MOCKS_RESULTS.md) cover all 16 draft
+positions against ADP-led, mixed and loose opponents: 1,200 forward scenarios,
+with actual complete examples and per-position shortlists. Run
+`research adp-mocks --refresh-market`; supply `--slot N` to test one position.
+The documented ESPN ADP tail fallback and opponent noise are explicit assumptions,
+not calibrated human-choice probabilities. Live drafting remains separate.
