@@ -94,3 +94,9 @@ adds injury history to box-score rates/minutes and combines these with locked
 games forecasts. `research injury-scoring-backtest` evaluates actual prediction
 errors separately for season totals, fantasy points/game and individual stats.
 The full adjustment does not improve accuracy on these three test seasons.
+
+The [expanded expert-board comparison](BASKETBALL_EXPERT_BOARDS_RESULTS.md)
+tests six publishers across four seasons, with direct/timed picks, a fixed
+publisher consensus, equal top-50 coverage and an alternate opponent field.
+Run `research expert-collect` then `research expert-backtest`. Board format,
+depth and opponent assumptions materially affect the results.
