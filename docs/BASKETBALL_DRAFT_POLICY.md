@@ -1,4 +1,4 @@
-# Current draft policy — October 17, 2026
+# Current draft policy — October 18, 2026
 
 The live expert watcher now combines an updated points board, demand before our
 next turn, and injury return estimates at an appropriate draft price. This policy
@@ -49,12 +49,57 @@ eligible expert choice inside that demand window. This demonstrates the timing
 tradeoff explicitly; it is not evidence that this pair will outperform another.
 The policy checks again on the next turn rather than guaranteeing Kessler survives.
 
-The final API gate recomputes the selected expert/timing/availability choice,
+## Position scarcity and team balance
+
+The owner requested keeping scarcity after reviewing the forward mock comparisons.
+`draft.balance` enables a three-published-rank tiebreaker from round 2 onward.
+The first-round elite choice and final roster selection retain expert priority.
+After finding the best availability-verified expert player, consider alternatives
+within three published ranks in the **same timing tier**. Unpublished ESPN tails
+do not create artificial expert tiers. No timing buffer or ADP policy is added.
+
+Weight each configured non-UTIL starter slot, including G/F flex slots, by the
+inverse of its supply among the first 32 currently legal deferred candidates.
+Exact distinct-player matching measures how much a candidate improves coverage;
+one flexible player cannot fill two positions. Prefer a verified alternative
+only when that coverage gain exceeds the best expert player's gain, with expert
+order resolving ties. Every candidate still meets bans, injury-price rules and
+roster legality. This is a team-balance preference, not a demonstrated scoring
+improvement or calibrated forecast of future supply. Protecting round 1 avoids
+the research example's Flagg-over-Giannis tradeoff; the production rule also
+includes G/F slots, so it is a revised rule rather than the exact tested heuristic.
+
+The final API gate recomputes the selected expert/timing/availability/balance choice,
 refreshes authoritative events, rechecks the turn and clock, and stores the
 source, timing and candidate with the acknowledged selection receipt. Manual API
 commands still represent explicit owner selections; the timing rule governs
 automatic expert picks. ESPN's own autopicks cannot enforce this policy. Do not
 build an autopick fallback queue as part of this scheduled draft.
+
+## Native draft slots and explicit refusals
+
+ESPN assigns players to specific draft-slot IDs. The API now reconstructs occupied
+slots from authoritative INIT and SELECTED/SOLD events and applies SLOT_CHANGED
+events. Candidates must fit an actually open slot as well as pass the existing
+whole-roster matching check. The latter permits rearranging players and cannot
+alone establish that ESPN will accept the selection. The API never invents or
+sends roster moves to make a candidate fit. Autopick must be confirmed off.
+
+Only the exact server response `ERROR 1 Invalid+Selection.` (equivalent URL
+encoding accepted), attributed to the one outstanding SELECT after the initial
+server barrier, is treated as a definite refusal. It is persisted in the write
+journal before recovery. The client finishes the frame batch, requests a fresh
+server barrier and reconciles. A confirmed exact-pick receipt always wins; it
+must never trigger another selection.
+
+A definite refusal moves to `draft-rejections.json` before the intent clears.
+The watcher chooses the next verified candidate using fresh state, normal source,
+balance, ban, availability, turn and >=25-second clock checks. Rejection exclusions
+apply only to the same league/team/season and exact pick-history/slot context,
+not to the player in every room or future turn. If recovery crashes, persisted
+refusal evidence can be reconciled after reconnect. Unknown errors, failed sends,
+disconnects and missing acknowledgements keep their uncertain intent and stop
+automatic writes until authoritative reconciliation. No blind retries are added.
 
 ## Injuries at the right draft price
 
@@ -91,9 +136,16 @@ at our turn and roster fit. No explicit risk-review approval is generated.
 
 ## Validation
 
-79 targeted backend tests cover source parsing/capture integrity, draft-morning
+The earlier 79 targeted backend tests covered source parsing/capture integrity, draft-morning
 cutoffs, current-source selection, timing windows and stale slots, final and
 consecutive picks, Kessler deferral, injury price tiers, source/identity failures,
 bans, fresh clocks, exact API acknowledgements and durable receipts. Additional
-read-only checks used the current public sources and the saved mock state. No
-real draft selection or new mock selection was submitted for this change.
+read-only checks used the current public sources and the saved mock state.
+
+The October 18 balance/refusal change passes 69 focused backend tests, including
+15 new regressions for native slot constraints, safe refusal recovery, crash
+reconciliation, actual receipt precedence, unknown-error retention, Autopick
+confirmation and bounded balance choices. A complete 192-selection native API
+log also replays with exact slot occupancy across all 16 teams. See
+[the slot investigation and mock verification](BASKETBALL_DRAFT_SAFETY.md).
+No real-league selection was submitted during this work.

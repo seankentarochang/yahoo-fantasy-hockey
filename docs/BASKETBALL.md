@@ -510,9 +510,14 @@ termination before removing that empty directory.
 
 `python -m basketball draft watch --transport api --strategy expert --source rotowire --execute`
 selects from the current expert board, subject to the configured next-turn demand
-window, injury-price schedule, personal bans, starter coverage, position caps and
+window, close-rank position scarcity, injury-price schedule, personal bans, starter coverage, position caps and
 current availability checks. See [the current policy](BASKETBALL_DRAFT_POLICY.md).
 It uses native API turn/clock checks, acknowledgement and recovery. The explicit
+selector also requires an open native draft slot: a whole-roster lineup can fit
+after rearrangement while ESPN still has no open slot for that candidate. Exact
+attributed Invalid Selection refusals are persisted and reconciled before the
+watcher chooses another verified candidate. Unknown or uncertain errors retain
+their journal and stop automatic writes. Autopick must be confirmed off. The explicit
 `expert` strategy uses the selected publisher; omitting it retains the previous
 model strategy. Expert automatic drafting supports only the API transport and
 never silently falls back when a source is missing. Legal expert rookies do not

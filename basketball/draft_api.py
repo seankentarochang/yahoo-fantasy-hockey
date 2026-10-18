@@ -2,24 +2,25 @@
 
 Wire contract observed in ESPN's basketball draft.js, build
 449ae61ae2f5-1.520 (2026-10-16). See docs/BASKETBALL.md for the source.
-No browser, guessed REST writes, automatic retries, or credential logging.
+No browser, guessed REST writes, blind retries, or credential logging.
 """
 import base64
 import copy
+import hashlib
 import json
 import secrets
 import struct
 import time
-from urllib.parse import urlencode
+from urllib.parse import urlencode, unquote_plus
 from uuid import UUID
 
-from .config import credentials, identity, now, path, read_json, write_json
+from .config import SLOTS, credentials, identity, now, path, read_json, write_json
 from .bans import auction, board
 from .espn import Client, import_settings, normalize
 from .manager import run_lock
 from .model import Model
 from .draft_advisor import expert_board, legal_choices
-from . import availability, bans
+from . import availability, bans, draft_balance
 
 
 # Versioned, big-endian Java storables in INIT. Optional objects begin with a
@@ -112,6 +113,11 @@ class Room:
         self.high_bid = 0
         self.last_ping = time.monotonic()
         self.bid_receipts = set()
+        self.slots = None
+        self.placements = {}
+        self.autopick = None
+        self.select_intent = None
+        self.selection_error = False
 
     def __enter__(self):
         auth = credentials(self.cfg)
@@ -208,6 +214,16 @@ class Room:
             return
         name, fields = parts[0], parts[1:]
         if name == "ERROR":
+            # One drained connection and one outstanding SELECT identify this
+            # exact refusal. Unknown errors remain ambiguous and keep intent.
+            if len(fields) == 2 and fields[0] == '1' and unquote_plus(fields[1]) == 'Invalid Selection.':
+                intent = self.select_intent
+                saved = read_json(path(self.cfg, 'draft-write.json'))
+                if intent is not None and saved == intent:
+                    saved['server_rejection'] = {'code': 1, 'reason': 'invalid_selection'}
+                    write_json(path(self.cfg, 'draft-write.json'), saved)
+                    self.selection_error = True
+                    return
             # Do not log arbitrary server text, which can contain account data.
             raise ValueError("ESPN rejected a draft command; inspect the room before retrying")
         if name == "INIT":
@@ -216,9 +232,27 @@ class Room:
             if (init["leagueId"], init["teamId"], league["leagueId"]) != (self.cfg["league_id"], self.cfg["team_id"], self.cfg["league_id"]):
                 raise ValueError("Draft socket returned a different league or team")
             self.init, self.state, self.draft_type = init, league["draftState"], league["draftType"]
+            definitions = league['draftSlots']
+            if league['draftRules'] is not None and not definitions:
+                raise ValueError('ESPN draft slot definitions are missing')
+            if any(s['slotCategoryId'] not in SLOTS for s in definitions):
+                raise ValueError('ESPN returned unsupported draft slot categories')
+            self.slots = {s['slotId']: SLOTS[s['slotCategoryId']] for s in definitions} if definitions else None
+            if self.slots is not None and len(self.slots) != len(definitions):
+                raise ValueError('ESPN returned duplicate draft slots')
+            self.placements = {t['teamId']: {p['slotId']: p['playerId'] for p in t['draftRosterItems'] if p['playerId'] > 0}
+                               for t in league['draftTeams']}
+            own = next((t for t in league['draftTeams'] if t['teamId'] == self.cfg['team_id']), None)
+            self.autopick = own['autodraftTypeId'] != 0 if own else None
             # The socket sends the entire pick schedule; -1 means unselected.
             # Zero is a skipped pick and still occupies its overall number.
             self.picks = [p for p in league["draftPicks"] if p and p["playerId"] >= 0]
+            for p in self.picks:
+                placement = self.placements.setdefault(p['teamId'], {})
+                if p['playerId'] > 0 and p['playerId'] not in placement.values():
+                    if self.slots is not None and p['slotId'] in placement:
+                        raise ValueError('ESPN draft roster and pick slots disagree')
+                    placement[p['slotId']] = p['playerId']
             self.queue = [p["playerId"] for p in (init.get("nominationList") or {}).get("nominationListPlayers", [])]
             self.selecting = next((p["teamId"] for p in sorted(league["draftPicks"], key=lambda p: p["pickNumber"])
                                    if p["playerId"] == -1), None) if self.draft_type == 1 else None
@@ -246,9 +280,14 @@ class Room:
             team, player, slot = map(int, fields[:3])
             if player > 0 and any(p["playerId"] == player for p in self.picks):
                 raise ValueError("Duplicate draft selection event; reconnect to establish state")
+            placement = self.placements.setdefault(team, {})
+            if player > 0 and self.slots is not None and (slot not in self.slots or slot in placement):
+                raise ValueError('ESPN selected into an unknown or occupied draft slot; reconcile')
             self.picks.append({"teamId": team, "playerId": player, "slotId": slot,
                                "pickNumber": self.next_pick(),
                                "bidAmount": int(fields[3]) if name == "SOLD" else 0})
+            if player > 0:
+                placement[slot] = player
             self.selecting = self.deadline = None
         elif name == "BID":
             self.high_team, self.block_player, self.high_bid, _, millis = map(int, fields[:5])
@@ -259,7 +298,17 @@ class Room:
             self.queue = [int(x) for x in fields]
         elif name == "PONG":
             self.barrier = fields[0] if fields else None
-        elif name in {"RESET", "UNDONE", "ADJUSTED", "SLOT_CHANGED"}:
+        elif name == 'AUTODRAFT' and int(fields[0]) == self.cfg['team_id']:
+            if fields[1].lower() not in {'true', 'false'}:
+                raise ValueError('ESPN returned an unknown Autopick state')
+            self.autopick = fields[1].lower() == 'true'
+        elif name == 'SLOT_CHANGED':
+            team, player, old, new = map(int, fields[:4])
+            placement = self.placements.setdefault(team, {})
+            if self.slots is None or old not in self.slots or new not in self.slots or placement.get(old) != player or new in placement:
+                raise ValueError('ESPN draft slot change cannot be reconciled')
+            placement[new] = placement.pop(old)
+        elif name in {"RESET", "UNDONE", "ADJUSTED"}:
             raise ValueError("Draft history changed; reconnect to obtain a new authoritative INIT")
         elif name == "LEFT" and int(fields[0]) == self.cfg["team_id"]:
             raise ValueError("Your draft connection left the room; reconnect before acting")
@@ -277,10 +326,23 @@ class Room:
         occupied = {p["pickNumber"] for p in self.picks}
         return next(n for n in range(1, len(occupied) + 2) if n not in occupied)
 
+    def context(self):
+        evidence = {'picks': sorted((p['pickNumber'], p['teamId'], p['playerId']) for p in self.picks),
+                    'slots': sorted(self.placements.get(self.cfg['team_id'], {}).items())}
+        return hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest()
+
+    def ensure_manual(self):
+        if self.autopick is not False:
+            self.send('AUTODRAFT false')
+            self.wait_for(lambda: self.autopick is False, 5)
+        if self.autopick is not False:
+            raise ValueError('ESPN has not confirmed Autopick disabled')
+
     def status(self):
         return {**identity(self.cfg), "transport": "api", "state": {0: "before", 1: "live", 2: "complete", 3: "paused"}.get(self.state, "unknown"),
                 "type": {1: "snake", 4: "auction", 5: "linear"}.get(self.draft_type, "unsupported"),
                 "selecting_team": self.selecting, "seconds_left": round(self.seconds_left(), 1),
+                "autopick": self.autopick,
                 "picks": [{k: p[k] for k in ("teamId", "playerId", "pickNumber", "bidAmount")} for p in self.picks],
                 "queue": self.queue, "pending": reconcile(self)}
 
@@ -294,6 +356,14 @@ class Room:
         for pick in self.picks:
             if pick["playerId"] in by:
                 by[pick["playerId"]]["owner"] = pick["teamId"]
+        context = self.context()
+        rejected = read_json(path(self.cfg, 'draft-rejections.json'), [])
+        if any(any(r.get(k) != v for k, v in identity(self.cfg).items()) for r in rejected):
+            raise ValueError('Draft rejection ledger belongs to a different league/team/season')
+        occupied = self.placements.get(self.cfg['team_id'], {})
+        snap['draft_constraints'] = {
+            'open_slots': [category for sid, category in self.slots.items() if sid not in occupied] if self.slots is not None else None,
+            'rejected': [r['player'] for r in rejected if r.get('context') == context]}
         # Live INIT replaces manual tracking; stale local picks must not influence
         # legality, turn detection, auction spending, or recommendations.
         write_json(path(self.cfg, "draft.json"), {**identity(self.cfg), "picks": [
@@ -316,6 +386,8 @@ class Room:
         if self.state != 1 or self.seconds_left() < 25:
             raise ValueError("Draft must be live with at least 25 seconds on the clock")
         if action == "pick":
+            if self.autopick is not False:
+                raise ValueError('ESPN must confirm Autopick disabled before selecting')
             if self.draft_type != 1 or self.phase not in (1, 6) or self.selecting != self.cfg["team_id"]:
                 raise ValueError("Live API does not confirm your snake draft turn")
         elif action == "bid":
@@ -351,7 +423,7 @@ class Room:
             if action != "pick":
                 raise ValueError("Expert timing applies to live picks, not ESPN autopick queues")
             policy_board = expert_board(model, expert_source, limit=None)
-            selected, _ = availability.verified_choice(model, policy_board["players"])
+            selected, _ = draft_balance.verified_choice(model, policy_board["players"])
             if selected["id"] != player["id"]:
                 raise ValueError("Expert/timing/availability choice changed; recompute before selecting")
             selection = {"candidate": selected, "sources": policy_board["sources"], "timing": policy_board["timing"]}
@@ -375,13 +447,29 @@ class Room:
             command = f"SELECT {player['id']}" if action == "pick" else f"BID {player['id']} {bid}"
         intent = {**identity(self.cfg), "action": action, "player": player["id"], "bid": bid,
                   "pick": self.next_pick(),
+                  "context": self.context(),
                   "at": now(self.cfg).isoformat()}
         intent["availability"] = evidence
         if selection is not None:
             intent["selection"] = selection
         write_json(path(self.cfg, "draft-write.json"), intent)
-        self.send(command)
-        self.wait_for(lambda: confirmed(self, intent))
+        self.selection_error = False
+        self.select_intent = intent if action == 'pick' else None
+        try:
+            self.send(command)
+            self.wait_for(lambda: confirmed(self, intent) or self.selection_error)
+            if self.selection_error:
+                # Finish the frame batch and a fresh server barrier before
+                # resolving the refusal. A concurrent receipt always wins.
+                self.refresh()
+                reconcile(self)
+                if not confirmed(self, intent):
+                    if read_json(path(self.cfg, 'draft-write.json')):
+                        raise ValueError('Selection refusal remains unresolved; reconcile before another command')
+                    return {'verified': False, 'rejected': True, 'action': action, 'id': player['id'],
+                            'pick': intent['pick'], 'transport': 'api', 'reason': 'invalid_selection'}
+        finally:
+            self.select_intent = None
         reconcile(self)
         self.model()
         return {"verified": True, "action": action, "player": player["name"], "id": player["id"], "bid": bid, "transport": "api"}
@@ -409,6 +497,15 @@ def reconcile(room):
             if not any(all(receipt.get(k) == v for k, v in intent.items()) for receipt in receipts):
                 receipts.append({**intent, "verified_at": now(room.cfg).isoformat()})
                 write_json(path(room.cfg, "draft-receipts.json"), receipts)
+            write_json(filename, None)
+            return None
+        if intent.get('action') == 'pick' and intent.get('context') and intent.get('server_rejection') == {'code': 1, 'reason': 'invalid_selection'}:
+            rejected = read_json(path(room.cfg, 'draft-rejections.json'), [])
+            if any(any(r.get(k) != v for k, v in identity(room.cfg).items()) for r in rejected):
+                raise ValueError('Draft rejection ledger belongs to a different league/team/season')
+            if not any(all(r.get(k) == v for k, v in intent.items()) for r in rejected):
+                rejected.append({**intent, 'resolved_at': now(room.cfg).isoformat()})
+                write_json(path(room.cfg, 'draft-rejections.json'), rejected)
             write_json(filename, None)
             return None
     return intent
@@ -447,8 +544,12 @@ def run(cfg, args):
             return room.execute(args.action, args.player, args.amount)
         if args.execute and room.draft_type != 1:
             raise ValueError("Automatic API drafting supports snake drafts only; auction bids are explicit")
+        if args.execute and room.state != 2:
+            room.ensure_manual()
         last = None
         while room.state != 2:
+            if args.execute and room.autopick is not False:
+                room.ensure_manual()
             if len(room.picks) != last:
                 model = room.model()
                 current = expert_board(model, args.source) if expert else board(model, current=room.next_pick(), slot=args.slot)
@@ -457,12 +558,14 @@ def run(cfg, args):
             if args.execute and room.state == 1 and room.selecting == cfg["team_id"] and room.seconds_left() >= 25:
                 model = room.model()
                 if expert:
-                    candidate, checks = availability.verified_choice(model, expert_board(model, args.source, limit=None)["players"])
+                    candidate, checks = draft_balance.verified_choice(model, expert_board(model, args.source, limit=None)["players"])
                 else:
                     candidate, checks = availability.verified_choice(model)
                 print(json.dumps({"availability_checks": checks}, ensure_ascii=False), flush=True)
-                print(json.dumps(room.execute("pick", candidate["id"], expert_source=args.source) if expert
-                                 else room.execute("pick", candidate["id"]), ensure_ascii=False), flush=True)
+                result = room.execute("pick", candidate["id"], expert_source=args.source) if expert else room.execute("pick", candidate["id"])
+                print(json.dumps(result, ensure_ascii=False), flush=True)
+                if result.get('rejected'):
+                    continue  # Recompute immediately; do not spend clock waiting for another event.
             room.receive(1)
         model = room.model()
         result = room.status()

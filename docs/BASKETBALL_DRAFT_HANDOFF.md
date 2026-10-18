@@ -3,7 +3,7 @@
 The user asked, "Can you just draft for me tomorrow" on October 17. This
 authorizes selecting the full team during this draft; do not ask for approval
 again for each pick. Use the updated RotoWire board with next-turn market timing,
-injury return estimates at the configured round, personal bans, position caps
+injury return estimates at the configured round, position-scarcity tiebreaking, personal bans, position caps
 and the ability to fill every starter slot. Follow BASKETBALL_DRAFT_POLICY.md. Do not
 switch to the older projection/VOR strategy or the experimental timing hybrid.
 
@@ -12,7 +12,8 @@ switch to the older projection/VOR strategy or the experimental timing hybrid.
 - League **2141453434**, team **18**, season **2027** (Diddy League).
 - ESPN verified October 17: **October 18 at 11:00 a.m. America/New_York**.
 - 16-team snake, 12 selections, 60-second clock, maximum four primary centers.
-- ESPN currently reports slot 15; re-read authoritative order on draft day.
+- The owner says the slot is undecided; ESPN uses DRAFT_START. Infer our assigned
+  slot from authoritative live order, rather than assuming provisional slot 15.
 - Execution checkout: the directory specified in the scheduled follow-up prompt.
   Use its tested implementation and runtime data while the policy PR is pending.
 - Config: `basketball/league.json`; saved login and source library are in ignored
@@ -24,7 +25,7 @@ switch to the older projection/VOR strategy or the experimental timing hybrid.
 
 ## Preflight and execution
 
-Start the scheduled follow-up at 10:30 a.m. Eastern on October 18. Check local
+Start the scheduled follow-up at 10:01 a.m. Eastern on October 18. Check local
 Eastern time before actions. Do not select players on a different date, in a
 different league/team/season, or after this draft has completed. If the draft
 time changed, report it and use the authoritative new time only within October
@@ -34,7 +35,8 @@ Read league settings, confirm identity, order, scoring and current source
 checksums. Check `draft bans` and `draft injuries --refresh`. Run
 `draft refresh-rankings` before draft start to capture the October 16 public
 RotoWire points cheat sheet (200 published ranks) or its latest update. Require
-`selection_policy: next_turn` and the configured injury round schedule. Names
+`selection_policy: next_turn`, `balance: {rank_gap: 3, start_round: 2, lookahead: 32}`
+and the configured injury round schedule. Names
 with ambiguous identity or missing ESPN ranks are reported,
 never guessed. Unpublished tails explicitly follow ESPN. A missing/corrupt board
 must stop expert drafting rather than fall back to the older model.
@@ -58,9 +60,14 @@ python -u -m basketball draft watch --transport api --strategy expert --source r
 Keep supervising until ESPN confirms draft completion and all 12 team selections
 are recorded. Redirect ordinary output to an ignored local log if useful; poll
 the process in bounded intervals and inspect failures. The watcher chooses the
-highest legal expert-ranked candidate inside the remaining ESPN demand window
+best legal expert candidate inside the remaining ESPN demand window
 before our next turn, with a deferred tier only after urgent candidates fail
-availability. Known return estimates allow temporary injuries at the configured
+availability. From round 2, prefer scarce unfilled starter positions, including
+G/F flex slots, among verified candidates within three published expert ranks
+in the same timing tier. Keep the first-round expert choice and final selection
+in expert order; do not add timing buffers or switch to blended/ADP timing.
+Require an actually open authoritative draft slot in addition to global lineup
+matching. Known return estimates allow temporary injuries at the configured
 round: 14 days in rounds 1–4, 42 days in rounds 5–8, known returns this season
 from round 9. There is no injured-player count limit. The existing public profile,
 NBA roster and injury checks remain mandatory before native API submission. It
@@ -68,6 +75,11 @@ requires the authoritative current turn, at least 25 seconds remaining, and
 server acknowledgement. A rookie need not have a historical projection to be a
 legal expert selection. Do not create manual injury risk reviews or override a
 ban; configured automatic injury eligibility is recorded separately.
+
+For the exact attributed Invalid Selection refusal, let the tested native API
+recovery persist the refusal, refresh/reconcile, and select another verified
+candidate scoped to this draft situation. Rejections are not global player bans.
+Never clear an intent by hand or classify another error as definite refusal.
 
 On disconnect or an uncertain command, reconnect and reconcile server state
 before attempting another selection. An authenticated ESPN browser or phone can displace the API connection; use the local read-only viewer to observe rather than reconnecting the ESPN room. Never blindly resend, claim a failed write

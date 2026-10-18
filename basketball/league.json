@@ -26,6 +26,7 @@
   "ir_statuses": ["OUT", "INJURY_RESERVE"],
   "draft": {"type": "snake", "date": "2026-10-18T11:00:00-04:00", "seconds_per_pick": 60, "slot": null, "budget": 200, "minimum_bid": 1, "adp_sigma": 12,
     "selection_policy": "next_turn",
+    "balance": {"rank_gap": 3, "start_round": 2, "lookahead": 32},
     "injury_policy": {"early_rounds": 4, "early_days": 14, "middle_days": 42, "late_round": 9, "season_end": "2027-04-11"}},
   "playoff_weeks": [],
   "regular_season_matchups": 18,

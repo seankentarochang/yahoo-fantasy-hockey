@@ -72,7 +72,11 @@ def legal_choices(model, order):
     gone = {p["player"] for p in picks}
     mine = [model.by_id[p["player"]] for p in picks if p["team"] == model.cfg["team_id"]]
     policy = bans.listing(model.cfg)
+    constraints = model.snapshot.get('draft_constraints', {})
+    rejected = set(constraints.get('rejected', []))
+    open_slots = constraints.get('open_slots')
     return [pid for pid in order if pid not in gone and model.by_id[pid]["owner"] in (0, model.cfg["team_id"])
+            and pid not in rejected and (open_slots is None or bool(set(open_slots) & set(model.by_id[pid]['eligible'])))
             and model.by_id[pid].get("active") is not False
             and not bans.reason(model.cfg, model.by_id[pid], policy=policy) and legal(model, mine, pid)]
 
