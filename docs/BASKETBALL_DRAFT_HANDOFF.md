@@ -14,6 +14,8 @@ switch to the older projection/VOR strategy or the experimental timing hybrid.
 - 16-team snake, 12 selections, 60-second clock, maximum four primary centers.
 - The owner says the slot is undecided; ESPN uses DRAFT_START. Infer our assigned
   slot from authoritative live order, rather than assuming provisional slot 15.
+  Timing now takes the first-round order from the native socket pick schedule;
+  a disagreement between the schedule and live turn blocks submission until reconnect.
 - Execution checkout: the directory specified in the scheduled follow-up prompt.
   Use its tested implementation and runtime data while the policy PR is pending.
 - Config: `basketball/league.json`; saved login and source library are in ignored

@@ -348,6 +348,18 @@ class Room:
 
     def model(self):
         raw = copy.deepcopy(self.raw)
+        # DRAFT_START can randomize after the REST capture. The socket's
+        # first-round schedule, rather than that provisional order, drives timing.
+        schedule = sorted(self.init['league']['draftPicks'], key=lambda p: p['pickNumber'])
+        first = [p for p in schedule if 1 <= p['pickNumber'] <= self.cfg['teams']]
+        if len(first) == self.cfg['teams']:
+            order = [p['teamId'] for p in first]
+            if ([p['pickNumber'] for p in first] != list(range(1, self.cfg['teams']+1))
+                    or set(order) != {t['id'] for t in raw['teams']} or len(set(order)) != len(order)):
+                raise ValueError('Native first-round schedule is inconsistent; reconnect before drafting')
+            raw['settings'].setdefault('draftSettings', {})['pickOrder'] = order
+        elif self.state == 1 and self.cfg['draft'].get('selection_policy') == 'next_turn' and self.init['league']['draftRules'] is not None:
+            raise ValueError('Native draft order is unavailable; reconnect before drafting')
         raw["draftDetail"] = {"picks": [{**p, "overallPickNumber": p["pickNumber"]} for p in self.picks],
                               "drafted": self.state == 2, "inProgress": self.state in (1, 3)}
         cfg = import_settings(copy.deepcopy(self.cfg), raw, persist=False)
@@ -390,6 +402,9 @@ class Room:
                 raise ValueError('ESPN must confirm Autopick disabled before selecting')
             if self.draft_type != 1 or self.phase not in (1, 6) or self.selecting != self.cfg["team_id"]:
                 raise ValueError("Live API does not confirm your snake draft turn")
+            scheduled = next((p['teamId'] for p in self.init['league']['draftPicks'] if p['pickNumber'] == self.next_pick()), None)
+            if scheduled is not None and scheduled != self.selecting:
+                raise ValueError('Native schedule changed; reconnect for authoritative order')
         elif action == "bid":
             if self.draft_type != 4 or self.phase != 2 or self.block_player != player["id"] or self.high_team == self.cfg["team_id"]:
                 raise ValueError("Live API does not confirm this player's auction bidding window")

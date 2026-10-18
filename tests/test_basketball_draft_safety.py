@@ -182,6 +182,27 @@ class DraftSafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unknown Autopick'):
             room.consume('AUTODRAFT 18 unknown')
 
+    def test_native_schedule_overrides_provisional_rest_order(self):
+        room=self.room()
+        room.raw['settings']['draftSettings']={'pickOrder':[2,18],'orderType':'DRAFT_START'}
+        room.init['league']['draftPicks']=[{'pickNumber':1,'teamId':18,'playerId':-1},
+                                         {'pickNumber':2,'teamId':2,'playerId':-1}]
+        model=room.model()
+        self.assertEqual(model.cfg['draft']['slot'],1)
+        self.assertEqual(model.snapshot['settings']['draftSettings']['pickOrder'],[18,2])
+        room.init['league']['draftPicks'][1]['teamId']=18
+        with self.assertRaisesRegex(ValueError,'schedule is inconsistent'):
+            room.model()
+
+    def test_changed_schedule_blocks_submission_until_reconnect(self):
+        room=self.room()
+        room.init['league']['draftPicks']=[{'pickNumber':1,'teamId':2,'playerId':-1},
+                                         {'pickNumber':2,'teamId':18,'playerId':-1}]
+        with self.assertRaisesRegex(ValueError,'schedule changed'):
+            room.execute('pick',1)
+        self.assertFalse(any(s.startswith('SELECT ') for s in room.socket.sent))
+        self.assertIsNone(read_json(path(self.cfg,'draft-write.json')))
+
 
 class BalanceTests(unittest.TestCase):
     setUp = DraftApiTests.setUp
