@@ -41,7 +41,7 @@ def parser():
     ranks.add_argument("--limit", type=int, default=200)
     ranks.add_argument("--csv")
     research = sub.add_parser("research", help="Comparison-only statistical board; never selects draft players")
-    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest", "injury-scoring-backtest", "expert-collect", "expert-backtest", "adp-mocks"))
+    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest", "injury-scoring-backtest", "expert-collect", "expert-backtest", "adp-mocks", "timing-mocks"))
     research.add_argument("--years", nargs="+", type=int, help="Completed ending seasons for public game logs")
     research.add_argument("--slot", type=int, help="ADP rehearsal snake slot; omit to test every position")
     research.add_argument("--count", type=int, default=25, help="Seeds per ADP rehearsal position and field")
@@ -248,6 +248,9 @@ def standings(model):
 def run(args):
     cfg = load(args.config)
     if args.command == "research":
+        if args.action == "timing-mocks":
+            from . import timing_lab
+            return timing_lab.run(cfg)
         if args.action == "adp-mocks":
             from . import adp_mocks
             return adp_mocks.run(cfg, args.slot, args.count, args.refresh_market)
