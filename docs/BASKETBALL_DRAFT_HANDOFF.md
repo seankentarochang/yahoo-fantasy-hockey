@@ -22,6 +22,10 @@ switch to the older projection/VOR strategy or the experimental timing hybrid.
 - Authenticated league reads work. The live draft connection returned HTTP 500
   before the draft room opened; that connection is not yet verified for this
   league. The API transport was previously rehearsed in a separate mock. The October 17 expert rehearsal (practice 2035580386) completed 11 current-source API selections after one browser pick, with zero ESPN autopicks; see BASKETBALL_EXPERT_API_REHEARSAL.md.
+- October 18: the current algorithm completed native mocks from all 16 positions,
+  with 192/192 own API receipts, zero selection refusals and full roster checks.
+  See BASKETBALL_ALL_SLOTS_MOCKS.md. Practice alone uses a five-second floor for
+  short clocks; keep the real >=25-second gate. No strategy change followed this run.
 
 ## Preflight and execution
 

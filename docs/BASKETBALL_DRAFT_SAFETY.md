@@ -114,3 +114,13 @@ Aggregate evidence: [native mock results](basketball_draft_safety_results.json).
 Raw inputs, native frames, journals and disposable probe scripts remain ignored
 under `basketball/data/draft-slot-investigation/`. The scheduled draft remains
 October 18 at 11 a.m. Eastern, with preparation starting at 10:01 a.m.
+
+## Subsequent all-position rehearsal
+
+The [16-position native mock series](BASKETBALL_ALL_SLOTS_MOCKS.md) ran the same
+production selection implementation with actual algorithmic choices at every
+position: 16/16 rooms passed, all 192 team picks have API receipts, and no
+selection refusals or timeout picks occurred. Scarcity changed ten choices.
+All rosters passed coverage, caps, bans and native-slot checks. Thirteen initial
+HTTP 500 opening retries recovered; no in-draft disconnect occurred. The same
+isolated five-second practice floor applies; the real >=25-second gate is unchanged.
