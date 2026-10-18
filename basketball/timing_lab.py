@@ -1,5 +1,5 @@
 """Paired, comparison-only RotoWire timing and core-position scarcity mocks."""
-from collections import Counter, defaultdict
+from collections import defaultdict
 from functools import lru_cache
 import hashlib
 import statistics
@@ -51,20 +51,24 @@ def choose(data, roster, gone, rnd, gap, policy):
     buffer, scarcity = POLICIES[policy]
     legal = data["legal"]
     available = [pid for pid in data["quality"] if pid not in gone and pid not in data["bans"]
-                 and data["rounds"][pid] <= rnd and legal(tuple(sorted(roster)), pid)]
-    if not available:
+                 and data["rounds"][pid] <= rnd]
+    roster_key = tuple(sorted(roster))
+    best_available = next((pid for pid in available if legal(roster_key, pid)), None)
+    if best_available is None:
         raise ValueError("No legal timing-lab selection")
     remaining = [pid for pid in data["espn_market"] if pid not in gone]
     positions = {pid: i+1 for i, pid in enumerate(remaining)}
     base_window = gap+1 if gap is not None and gap > 0 else None
     window = base_window + buffer if base_window is not None and buffer is not None else None
     urgent = set(remaining[:window]) if window is not None else set()
-    tier = [pid for pid in available if pid in urgent] or available
-    best = tier[0]
+    tier = [pid for pid in available if pid in urgent]
+    best = next((pid for pid in tier if legal(roster_key, pid)), None)
+    if best is None:
+        tier, best = available, best_available
     candidate, gain, supply = best, 0, {}
     if scarcity and gap is not None and best in data["rw_ranks"]:
         near = [pid for pid in tier if pid in data["rw_ranks"]
-                and data["rw_ranks"][pid] <= data["rw_ranks"][best]+3]
+                and data["rw_ranks"][pid] <= data["rw_ranks"][best]+3 and legal(roster_key, pid)]
         survivors = [pid for pid in data["quality"] if pid not in gone and pid not in data["bans"]
                      and positions[pid] > (base_window or 1) and data["rounds"][pid] <= rnd+1][:32]
         supply = {slot: sum(slot in data["model"].by_id[pid]["eligible"] for pid in survivors) for slot in CORE}
@@ -73,7 +77,7 @@ def choose(data, roster, gone, rnd, gap, policy):
         gains = {pid: weighted_coverage([data["model"].by_id[p] for p in (*roster, pid)], weights)-before for pid in near}
         candidate = max(near, key=lambda pid: (round(gains[pid], 12), -data["quality_rank"][pid]))
         gain = gains[candidate]
-    return candidate, {"best_available": available[0], "best_in_tier": best, "market_position": positions[candidate],
+    return candidate, {"best_available": best_available, "best_in_tier": best, "market_position": positions[candidate],
                        "base_window": base_window, "window": window, "scarcity_changed": candidate != best,
                        "scarcity_gain": gain, "future_core_supply": supply,
                        "buffered_reach": bool(base_window is not None and positions[candidate] > base_window)}
