@@ -1,0 +1,1095 @@
+{
+  "version": 1,
+  "comparison_only": true,
+  "independent_holdout": false,
+  "selection_sha256": "2d4ef8e5951ffd4f573335effc8dcf455e422d920676609413c2f55e71afa729",
+  "decision_sha256": "b52e88ee664ae8b38d717924873ab4338c0eb2d4dad575d13758eb500d22905c",
+  "selected": {
+    "base_games": 10,
+    "injury_games": 100,
+    "base_output": 1,
+    "injury_output": 1
+  },
+  "summaries": {
+    "2023": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22662.291666666668,
+        "mean_gain_pct_vs_espn": 0.6569745297231895,
+        "paired_win_rate": 0.4583333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9670138888888888,
+        "mean_zero_games": 0.08333333333333333
+      },
+      "base_games": {
+        "drafts": 48,
+        "mean_total_points": 22450.375,
+        "mean_gain_pct_vs_espn": 0.03486305484222514,
+        "paired_win_rate": 0.3958333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.0416666666666667
+      },
+      "base_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22873.25,
+        "mean_gain_pct_vs_espn": 1.869336130382713,
+        "paired_win_rate": 0.5208333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.7708333333333334
+      },
+      "base_output": {
+        "drafts": 48,
+        "mean_total_points": 18644.9375,
+        "mean_gain_pct_vs_espn": -17.06521330014926,
+        "paired_win_rate": 0.020833333333333332,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1
+      },
+      "base_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 20546.291666666668,
+        "mean_gain_pct_vs_espn": -8.586259010684334,
+        "paired_win_rate": 0.125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.9583333333333334
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 22614.6875,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.96875,
+        "mean_zero_games": 0.08333333333333333
+      },
+      "injury_games": {
+        "drafts": 48,
+        "mean_total_points": 22371.041666666668,
+        "mean_gain_pct_vs_espn": -0.35608455053778754,
+        "paired_win_rate": 0.4375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.3541666666666667
+      },
+      "injury_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22629.791666666668,
+        "mean_gain_pct_vs_espn": 0.6830585221451807,
+        "paired_win_rate": 0.5,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.1041666666666667
+      },
+      "injury_output": {
+        "drafts": 48,
+        "mean_total_points": 19503.958333333332,
+        "mean_gain_pct_vs_espn": -13.210577612851958,
+        "paired_win_rate": 0.08333333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1
+      },
+      "injury_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22535.270833333332,
+        "mean_gain_pct_vs_espn": 0.24745971453705098,
+        "paired_win_rate": 0.4791666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.875
+      }
+    },
+    "2024": {
+      "base_games": {
+        "drafts": 48,
+        "mean_total_points": 21146.270833333332,
+        "mean_gain_pct_vs_espn": -12.96916438151067,
+        "paired_win_rate": 0.0625,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1
+      },
+      "base_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 22828.291666666668,
+        "mean_gain_pct_vs_espn": -6.006122671250447,
+        "paired_win_rate": 0.2708333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9878472222222222,
+        "mean_zero_games": 0.1875
+      },
+      "base_output": {
+        "drafts": 48,
+        "mean_total_points": 21482.604166666668,
+        "mean_gain_pct_vs_espn": -11.73500844815032,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.9791666666666666
+      },
+      "base_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 23279.854166666668,
+        "mean_gain_pct_vs_espn": -4.182840674066384,
+        "paired_win_rate": 0.3541666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9791666666666666,
+        "mean_zero_games": 0.20833333333333334
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 24471.583333333332,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9427083333333334,
+        "mean_zero_games": 0.041666666666666664
+      },
+      "injury_games": {
+        "drafts": 48,
+        "mean_total_points": 23018.520833333332,
+        "mean_gain_pct_vs_espn": -5.19107421226656,
+        "paired_win_rate": 0.3125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.7083333333333334
+      },
+      "injury_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 24392.291666666668,
+        "mean_gain_pct_vs_espn": 0.4592883817789795,
+        "paired_win_rate": 0.4791666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9913194444444444,
+        "mean_zero_games": 0.1875
+      },
+      "injury_output": {
+        "drafts": 48,
+        "mean_total_points": 22912.875,
+        "mean_gain_pct_vs_espn": -5.774857622681712,
+        "paired_win_rate": 0.2916666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.4791666666666667
+      },
+      "injury_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 23296.708333333332,
+        "mean_gain_pct_vs_espn": -4.159638214679265,
+        "paired_win_rate": 0.3125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9861111111111112,
+        "mean_zero_games": 0.25
+      }
+    },
+    "2025": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22905.708333333332,
+        "mean_gain_pct_vs_espn": -0.05211750699439382,
+        "paired_win_rate": 0.5208333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9791666666666666,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "Rotoworld": {
+        "drafts": 48,
+        "mean_total_points": 22770.1875,
+        "mean_gain_pct_vs_espn": -0.40471583392654964,
+        "paired_win_rate": 0.4375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "base_games": {
+        "drafts": 48,
+        "mean_total_points": 19901.6875,
+        "mean_gain_pct_vs_espn": -12.842324882223455,
+        "paired_win_rate": 0.125,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.0625
+      },
+      "base_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 20076.791666666668,
+        "mean_gain_pct_vs_espn": -12.252969161266751,
+        "paired_win_rate": 0.0625,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.125
+      },
+      "base_output": {
+        "drafts": 48,
+        "mean_total_points": 18652.5,
+        "mean_gain_pct_vs_espn": -18.715114355437983,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "base_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 19457.229166666668,
+        "mean_gain_pct_vs_espn": -15.338407360401407,
+        "paired_win_rate": 0.08333333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.1875
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 23014.625,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9809027777777778,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "injury_games": {
+        "drafts": 48,
+        "mean_total_points": 19846.1875,
+        "mean_gain_pct_vs_espn": -13.202393461973983,
+        "paired_win_rate": 0.08333333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 1.125
+      },
+      "injury_games_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 19975.770833333332,
+        "mean_gain_pct_vs_espn": -12.549496089774937,
+        "paired_win_rate": 0.08333333333333333,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.2083333333333333
+      },
+      "injury_output": {
+        "drafts": 48,
+        "mean_total_points": 18561.083333333332,
+        "mean_gain_pct_vs_espn": -18.759350303856895,
+        "paired_win_rate": 0.020833333333333332,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "injury_output_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 19426.354166666668,
+        "mean_gain_pct_vs_espn": -15.236577366862893,
+        "paired_win_rate": 0.0625,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      }
+    }
+  },
+  "prediction_metrics": {
+    "2023": {
+      "all": {
+        "base_games": {
+          "games": {
+            "players": 538,
+            "mae": 17.711588792674505,
+            "rmse": 22.423196153197093,
+            "bias": -1.1183560795466572
+          },
+          "points": {
+            "players": 538,
+            "mae": 385.23135434231614,
+            "rmse": 532.2912069258482,
+            "bias": -49.392959671206626
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 538,
+            "mae": 18.117724484752504,
+            "rmse": 22.539562572228753,
+            "bias": -1.6695297563897218
+          },
+          "points": {
+            "players": 538,
+            "mae": 391.3822590685859,
+            "rmse": 535.1549741765142,
+            "bias": -68.77222722083683
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 538,
+            "mae": 386.09427373428696,
+            "rmse": 522.3185566769804,
+            "bias": -29.624449765757873
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 538,
+            "mae": 390.13528520850093,
+            "rmse": 528.1523848040958,
+            "bias": -38.493285629798926
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 538,
+            "mae": 21.87732342007435,
+            "rmse": 27.9258604217918,
+            "bias": 12.77918215613383
+          },
+          "points": {
+            "players": 538,
+            "mae": 440.5544421800273,
+            "rmse": 561.7621089063841,
+            "bias": 139.83854728209872
+          }
+        }
+      },
+      "espn_top100": {
+        "base_games": {
+          "games": {
+            "players": 98,
+            "mae": 12.2649601758088,
+            "rmse": 16.731497283273185,
+            "bias": -5.7216788310396876
+          },
+          "points": {
+            "players": 98,
+            "mae": 505.6782550774424,
+            "rmse": 679.6469057747855,
+            "bias": -287.26554310480225
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 98,
+            "mae": 13.243174863862356,
+            "rmse": 17.36896730680059,
+            "bias": -7.3226247623847485
+          },
+          "points": {
+            "players": 98,
+            "mae": 554.062239276021,
+            "rmse": 707.8510847097015,
+            "bias": -344.7683712765543
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 98,
+            "mae": 531.8013844712498,
+            "rmse": 658.1908260375636,
+            "bias": -365.4661536259569
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 98,
+            "mae": 535.027437046234,
+            "rmse": 667.8039467155883,
+            "bias": -377.4384873244215
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 98,
+            "mae": 10.475510204081631,
+            "rmse": 14.506367356356003,
+            "bias": -1.251020408163263
+          },
+          "points": {
+            "players": 98,
+            "mae": 491.5421051581763,
+            "rmse": 631.8753409854405,
+            "bias": -136.23918563620273
+          }
+        }
+      }
+    },
+    "2024": {
+      "all": {
+        "base_games": {
+          "games": {
+            "players": 531,
+            "mae": 15.601030493242519,
+            "rmse": 19.770857522828265,
+            "bias": -1.4401074744524127
+          },
+          "points": {
+            "players": 531,
+            "mae": 353.0256415392489,
+            "rmse": 494.24828265328495,
+            "bias": -48.58396168883569
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 531,
+            "mae": 15.410379798453617,
+            "rmse": 19.59506215363978,
+            "bias": -1.1844148618427814
+          },
+          "points": {
+            "players": 531,
+            "mae": 353.04162055853465,
+            "rmse": 496.6378919330477,
+            "bias": -47.13293780200442
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 531,
+            "mae": 368.27084945432495,
+            "rmse": 498.31140825030064,
+            "bias": -29.72362540538125
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 531,
+            "mae": 364.8858339761232,
+            "rmse": 496.6223952075952,
+            "bias": -21.093073803047634
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 531,
+            "mae": 21.916007532956687,
+            "rmse": 28.302055184802672,
+            "bias": 15.085875706214692
+          },
+          "points": {
+            "players": 531,
+            "mae": 437.28976839305915,
+            "rmse": 556.2451026896582,
+            "bias": 181.03518065447582
+          }
+        }
+      },
+      "espn_top100": {
+        "base_games": {
+          "games": {
+            "players": 97,
+            "mae": 12.125518285515174,
+            "rmse": 15.148338996545842,
+            "bias": -3.663414569441437
+          },
+          "points": {
+            "players": 97,
+            "mae": 521.9469985694024,
+            "rmse": 649.1465649045085,
+            "bias": -156.0177210430138
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 97,
+            "mae": 12.804129336333308,
+            "rmse": 15.471530378720365,
+            "bias": -4.069320067971418
+          },
+          "points": {
+            "players": 97,
+            "mae": 537.2054403459767,
+            "rmse": 674.3170856001369,
+            "bias": -172.17153231170067
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 97,
+            "mae": 551.4058648068774,
+            "rmse": 669.3054605259907,
+            "bias": -253.20271686342352
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 97,
+            "mae": 534.5644446644247,
+            "rmse": 663.0601328840377,
+            "bias": -231.37919907793122
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 97,
+            "mae": 11.00618556701031,
+            "rmse": 14.976765510437799,
+            "bias": 0.6886597938144359
+          },
+          "points": {
+            "players": 97,
+            "mae": 502.2479283279808,
+            "rmse": 665.5433479536165,
+            "bias": -13.313920449597719
+          }
+        }
+      }
+    },
+    "2025": {
+      "all": {
+        "base_games": {
+          "games": {
+            "players": 542,
+            "mae": 16.468396659519144,
+            "rmse": 21.11237533090881,
+            "bias": -0.5919021687002877
+          },
+          "points": {
+            "players": 542,
+            "mae": 383.36709315836026,
+            "rmse": 520.549579043535,
+            "bias": -23.437055029053894
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 542,
+            "mae": 16.34410489125322,
+            "rmse": 20.987914484374304,
+            "bias": -0.238224847929105
+          },
+          "points": {
+            "players": 542,
+            "mae": 380.4414680192241,
+            "rmse": 515.440243865847,
+            "bias": -22.99157986300561
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 542,
+            "mae": 373.36459314761333,
+            "rmse": 503.63244927929054,
+            "bias": -5.793796200056535
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 542,
+            "mae": 380.2780544999421,
+            "rmse": 505.44697209943826,
+            "bias": 15.070006709193988
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 542,
+            "mae": 22.677121771217713,
+            "rmse": 28.663185949616416,
+            "bias": 16.066051660516607
+          },
+          "points": {
+            "players": 542,
+            "mae": 455.13087602890835,
+            "rmse": 574.0607136831204,
+            "bias": 201.32535243837046
+          }
+        }
+      },
+      "espn_top100": {
+        "base_games": {
+          "games": {
+            "players": 99,
+            "mae": 12.053508565339188,
+            "rmse": 15.739649338478703,
+            "bias": 0.9886448839883819
+          },
+          "points": {
+            "players": 99,
+            "mae": 562.0500778487439,
+            "rmse": 708.692124529734,
+            "bias": 96.40721058870189
+          }
+        },
+        "injury_games": {
+          "games": {
+            "players": 99,
+            "mae": 11.777582797048462,
+            "rmse": 15.74752645925839,
+            "bias": 0.7550784023953252
+          },
+          "points": {
+            "players": 99,
+            "mae": 557.5918953783905,
+            "rmse": 699.5251499630785,
+            "bias": 81.5695018401548
+          }
+        },
+        "base_output": {
+          "points": {
+            "players": 99,
+            "mae": 549.4593629166494,
+            "rmse": 696.4678140420182,
+            "bias": 6.829118282367051
+          }
+        },
+        "injury_output": {
+          "points": {
+            "players": 99,
+            "mae": 549.0583384563279,
+            "rmse": 695.2629359498966,
+            "bias": 35.18886882923039
+          }
+        },
+        "nhl_fixed": {
+          "games": {
+            "players": 99,
+            "mae": 12.193939393939395,
+            "rmse": 16.628441012465675,
+            "bias": 6.5979797979798
+          },
+          "points": {
+            "players": 99,
+            "mae": 589.9205126111265,
+            "rmse": 764.017778351929,
+            "bias": 287.88748603403064
+          }
+        }
+      }
+    }
+  },
+  "associations": [
+    {
+      "cohort": "all",
+      "feature": "episode_count",
+      "group": "0",
+      "player_seasons": 200,
+      "mean_next_games": 30.38,
+      "under50_frequency": 0.69,
+      "mean_next_points": 450.8476104417671,
+      "mean_prior_fpg": 10.749040301839496
+    },
+    {
+      "cohort": "all",
+      "feature": "episode_count",
+      "group": "1–2",
+      "player_seasons": 398,
+      "mean_next_games": 36.653266331658294,
+      "under50_frequency": 0.5979899497487438,
+      "mean_next_points": 626.7110552763819,
+      "mean_prior_fpg": 12.534118906911827
+    },
+    {
+      "cohort": "all",
+      "feature": "episode_count",
+      "group": "3–5",
+      "player_seasons": 397,
+      "mean_next_games": 42.272040302267,
+      "under50_frequency": 0.4836272040302267,
+      "mean_next_points": 926.1788413098237,
+      "mean_prior_fpg": 17.33258512658848
+    },
+    {
+      "cohort": "all",
+      "feature": "episode_count",
+      "group": "6+",
+      "player_seasons": 616,
+      "mean_next_games": 48.13636363636363,
+      "under50_frequency": 0.3961038961038961,
+      "mean_next_points": 1293.6639610389611,
+      "mean_prior_fpg": 25.027851008026744
+    },
+    {
+      "cohort": "all",
+      "feature": "severe_history",
+      "group": "False",
+      "player_seasons": 1253,
+      "mean_next_games": 40.70311252992817,
+      "under50_frequency": 0.5211492418196328,
+      "mean_next_points": 888.4066417305295,
+      "mean_prior_fpg": 17.523913003050925
+    },
+    {
+      "cohort": "all",
+      "feature": "severe_history",
+      "group": "True",
+      "player_seasons": 358,
+      "mean_next_games": 44.96368715083799,
+      "under50_frequency": 0.4441340782122905,
+      "mean_next_points": 1092.2262569832403,
+      "mean_prior_fpg": 20.891388013117595
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "episode_count",
+      "group": "0",
+      "player_seasons": 8,
+      "mean_next_games": 80.625,
+      "under50_frequency": 0,
+      "mean_next_points": 2228.5652610441766,
+      "mean_prior_fpg": 28.614828110735072
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "episode_count",
+      "group": "1–2",
+      "player_seasons": 25,
+      "mean_next_games": 68.36,
+      "under50_frequency": 0.12,
+      "mean_next_points": 2246.92,
+      "mean_prior_fpg": 28.950828889848044
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "episode_count",
+      "group": "3–5",
+      "player_seasons": 60,
+      "mean_next_games": 63.516666666666666,
+      "under50_frequency": 0.13333333333333333,
+      "mean_next_points": 2167.4833333333336,
+      "mean_prior_fpg": 32.236297009474235
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "episode_count",
+      "group": "6+",
+      "player_seasons": 201,
+      "mean_next_games": 62.62686567164179,
+      "under50_frequency": 0.13930348258706468,
+      "mean_next_points": 2351.8855721393033,
+      "mean_prior_fpg": 38.04524957383691
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "severe_history",
+      "group": "False",
+      "player_seasons": 211,
+      "mean_next_games": 64.8436018957346,
+      "under50_frequency": 0.11374407582938388,
+      "mean_next_points": 2360.8081615561773,
+      "mean_prior_fpg": 35.780926020092174
+    },
+    {
+      "cohort": "espn_top100",
+      "feature": "severe_history",
+      "group": "True",
+      "player_seasons": 83,
+      "mean_next_games": 61.096385542168676,
+      "under50_frequency": 0.18072289156626506,
+      "mean_next_points": 2152.397590361446,
+      "mean_prior_fpg": 35.95405953978682
+    }
+  ],
+  "injury_audit": {
+    "2020": {
+      "unmatched_or_ambiguous": 4796,
+      "matched_other": 329,
+      "matched_illness": 648,
+      "matched_knee": 1616,
+      "matched_return": 6444,
+      "matched_back": 525,
+      "matched_leg": 610,
+      "matched_ankle": 1518,
+      "matched_foot": 641,
+      "matched_hip_groin": 587,
+      "matched_hamstring": 405,
+      "matched_achilles": 177,
+      "matched_upper": 969,
+      "matched_head_neck": 392,
+      "approximate_date_excluded": 42,
+      "matched_rest": 559,
+      "duplicate_events": 84
+    },
+    "2021": {
+      "unmatched_or_ambiguous": 4814,
+      "matched_other": 366,
+      "matched_illness": 785,
+      "matched_knee": 1818,
+      "matched_return": 7391,
+      "matched_back": 598,
+      "matched_leg": 705,
+      "matched_ankle": 1701,
+      "matched_foot": 694,
+      "matched_hip_groin": 690,
+      "matched_hamstring": 476,
+      "matched_achilles": 198,
+      "matched_upper": 1116,
+      "matched_head_neck": 457,
+      "approximate_date_excluded": 43,
+      "matched_rest": 559,
+      "duplicate_events": 92
+    },
+    "2022": {
+      "unmatched_or_ambiguous": 4838,
+      "matched_other": 398,
+      "matched_illness": 1077,
+      "matched_knee": 2059,
+      "matched_return": 8556,
+      "matched_back": 666,
+      "matched_leg": 822,
+      "matched_ankle": 1880,
+      "matched_foot": 774,
+      "matched_hip_groin": 806,
+      "matched_hamstring": 529,
+      "matched_achilles": 230,
+      "matched_upper": 1221,
+      "matched_head_neck": 511,
+      "approximate_date_excluded": 45,
+      "matched_rest": 559,
+      "duplicate_events": 120
+    },
+    "2023": {
+      "unmatched_or_ambiguous": 4866,
+      "matched_other": 432,
+      "matched_illness": 1585,
+      "matched_knee": 2290,
+      "matched_return": 10065,
+      "matched_back": 777,
+      "matched_leg": 908,
+      "matched_ankle": 2106,
+      "matched_foot": 880,
+      "matched_hip_groin": 888,
+      "matched_hamstring": 593,
+      "matched_achilles": 256,
+      "matched_upper": 1349,
+      "matched_head_neck": 547,
+      "approximate_date_excluded": 49,
+      "matched_rest": 559,
+      "duplicate_events": 248
+    },
+    "2024": {
+      "unmatched_or_ambiguous": 4881,
+      "matched_other": 455,
+      "matched_illness": 1737,
+      "matched_knee": 2457,
+      "matched_return": 10712,
+      "matched_back": 866,
+      "matched_leg": 997,
+      "matched_ankle": 2280,
+      "matched_foot": 975,
+      "matched_hip_groin": 986,
+      "matched_hamstring": 636,
+      "matched_achilles": 272,
+      "matched_upper": 1453,
+      "matched_head_neck": 580,
+      "approximate_date_excluded": 49,
+      "matched_rest": 559,
+      "duplicate_events": 377
+    },
+    "2025": {
+      "unmatched_or_ambiguous": 4900,
+      "matched_other": 506,
+      "matched_illness": 1917,
+      "matched_knee": 2704,
+      "matched_return": 11909,
+      "matched_back": 967,
+      "matched_leg": 1098,
+      "matched_ankle": 2527,
+      "matched_foot": 1064,
+      "matched_hip_groin": 1080,
+      "matched_hamstring": 695,
+      "matched_achilles": 287,
+      "matched_upper": 1580,
+      "matched_head_neck": 615,
+      "approximate_date_excluded": 50,
+      "matched_rest": 559,
+      "duplicate_events": 530
+    }
+  },
+  "feature_coverage": {
+    "2023": {
+      "candidates": 538,
+      "with_prior_episodes": 472
+    },
+    "2024": {
+      "candidates": 531,
+      "with_prior_episodes": 457
+    },
+    "2025": {
+      "candidates": 542,
+      "with_prior_episodes": 482
+    }
+  },
+  "archive_coverage_end": "2025-05-13",
+  "draft_scenarios": 1440,
+  "paired_settings": 144,
+  "control_parity_verified": true,
+  "protocol_sha256": "b2b9e4e4fa59289ceb076ff88b1b4846a7096c7804caedb3950bfa08c48f66ff",
+  "data_sha256": "fdb0204dca495bf42da6ca003fcca2529f2b895647d27d463a67a64995b410dc",
+  "code_sha256": {
+    "injury_research.py": "4b4419c29cd588b1333da3d1ac8937f9b57c909f44eff567f5e07ce82bc21fdd",
+    "injury_history.py": "6fa5ea0c49d193701cf64580417d33aa358e6c7df2a45c69fc26761796dd7abc",
+    "availability_research.py": "3be740f4dd3cd2a35a95b3a9591cae97ad452dda986dd789d8daaf0046ef24ad",
+    "value_board.py": "d653f71c1140b07ba750dc412f9d14b814daf4d4a2803187680407204af44bd7",
+    "empirical.py": "c048faaf1329dec583b0ec7f859b514b5810fc00cbb5f61c75ed099f72f7bd94",
+    "empirical_draft.py": "1c14bb8e02230841a631ce77d05bd7f0b87956ac7c57e0e8042cb9e22b96259c",
+    "planner.py": "1233f761f61298b08c349a6804f5379e7c5a652800a167a107cf970d9311bafa",
+    "source_backtest.py": "4c46328dbdc47320f10d0bd4cd4ba1d39ac93a9fa499d2c6e732c2e8e0f32f32",
+    "ranking_library.py": "6a936a01c7f8115359831aa5c7d48238448c97a21fd384b283531d89ebdc81b1",
+    "config.py": "b3cae2a7ef042ca069321ffa5fe1d7ac5b1bf25992797df62cf9aac323479161",
+    "strategy_lab.py": "384de8bd8794b4e546fb40a3361d0d8ab99e1fddcf090ee9b978cf4badfa4c36",
+    "backtest.py": "048224f9295a144cdbfc0ef9f449e03fde8d16562789c5eb28d2e8c2ee4302db",
+    "model.py": "f5d9261d710be638a2711e4c07ab85e1fada9c4989e642b4722be4a651fa9b5a",
+    "research_board.py": "ee3213c9bd6015043dcb36f897710dd431f6a04eefe4b69f9ab445e454602197"
+  },
+  "injury_manifest": {
+    "url": "https://raw.githubusercontent.com/JaseZiv/NBA_data/217ce05b967b201d1b7a474f20b4a6cab273de66/raw-data/nba-injuries/nba_injuries.json",
+    "commit": "217ce05b967b201d1b7a474f20b4a6cab273de66",
+    "sha256": "94a6338ed0c4645115f5e4efe567909e381a14f9e7c379dd5e6aaf34876c25cd",
+    "rows": 73306,
+    "coverage_end": "2025-05-13",
+    "earliest_accepted_date": "2011-01-01",
+    "independently_timestamped": false,
+    "source": "Pro Sports Transactions archive mirrored by JaseZiv/NBA_data"
+  },
+  "test_models": {
+    "2023": {
+      "base_games": {
+        "alpha": 10,
+        "training_years": [
+          2020,
+          2021,
+          2022
+        ],
+        "training_samples": 1544,
+        "zero_target_samples": 341,
+        "target": "games"
+      },
+      "injury_games": {
+        "alpha": 100,
+        "training_years": [
+          2020,
+          2021,
+          2022
+        ],
+        "training_samples": 1544,
+        "zero_target_samples": 341,
+        "target": "games"
+      },
+      "base_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022
+        ],
+        "training_samples": 1544,
+        "zero_target_samples": 342,
+        "target": "points"
+      },
+      "injury_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022
+        ],
+        "training_samples": 1544,
+        "zero_target_samples": 342,
+        "target": "points"
+      }
+    },
+    "2024": {
+      "base_games": {
+        "alpha": 10,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "training_samples": 2082,
+        "zero_target_samples": 459,
+        "target": "games"
+      },
+      "injury_games": {
+        "alpha": 100,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "training_samples": 2082,
+        "zero_target_samples": 459,
+        "target": "games"
+      },
+      "base_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "training_samples": 2082,
+        "zero_target_samples": 460,
+        "target": "points"
+      },
+      "injury_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "training_samples": 2082,
+        "zero_target_samples": 460,
+        "target": "points"
+      }
+    },
+    "2025": {
+      "base_games": {
+        "alpha": 10,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "training_samples": 2613,
+        "zero_target_samples": 574,
+        "target": "games"
+      },
+      "injury_games": {
+        "alpha": 100,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "training_samples": 2613,
+        "zero_target_samples": 574,
+        "target": "games"
+      },
+      "base_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "training_samples": 2613,
+        "zero_target_samples": 576,
+        "target": "points"
+      },
+      "injury_output": {
+        "alpha": 1,
+        "training_years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "training_samples": 2613,
+        "zero_target_samples": 576,
+        "target": "points"
+      }
+    }
+  }
+}

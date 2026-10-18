@@ -1,0 +1,11 @@
+{
+  "season": 2027,
+  "team_role_changes": [
+    {"team": "20", "source": "https://www.nba.com/news/2026-27-season-preview-phi", "note": "Brown and James join Philadelphia; touches must be shared."},
+    {"team": "13", "source": "https://www.nba.com/news/2026-27-season-preview-lal", "note": "James leaves; Doncic and Reaves lead a reshaped offense."},
+    {"team": "22", "source": "https://www.nba.com/news/2026-27-season-preview-por", "note": "Morant and Lillard crowd Portland's backcourt and creation opportunities."},
+    {"team": "14", "source": "https://www.nba.com/news/2026-27-season-preview-mia", "note": "Giannis joins Miami, changing the frontcourt environment."},
+    {"team": "2", "source": "https://www.nba.com/news/2026-27-season-preview-bos", "note": "Brown leaves Boston; Tatum returns alongside a changed supporting cast."},
+    {"team": "1", "source": "https://www.nba.com/news/2026-27-season-preview-atl", "note": "Dort and Wiggins add perimeter competition to Atlanta's rotation."}
+  ]
+}

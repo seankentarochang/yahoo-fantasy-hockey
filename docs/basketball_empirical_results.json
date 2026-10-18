@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "selection_sha256": "ef701feabe55bc8f981e7b03a4ecef5b7b4d6d748d4ea3698892a8dda7efd105",
+  "decision_sha256": "a72200b67102dcb88a78da1febd7b0eb46e5422e62c7ad3aaaf97c1bf78dcc8e",
+  "data_sha256": "fdb0204dca495bf42da6ca003fcca2529f2b895647d27d463a67a64995b410dc",
+  "selected_alpha": 10,
+  "training_years": [
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "validation_year": 2024,
+  "rate_metrics": {
+    "2025": {
+      "learned": {
+        "players": 396,
+        "mae_at_30_minutes": 2.938075803789215,
+        "rmse_at_30_minutes": 3.7746761894225926,
+        "mean_error_at_30_minutes": -0.34996988868783285
+      },
+      "last_season": {
+        "players": 396,
+        "mae_at_30_minutes": 2.9882145800926048,
+        "rmse_at_30_minutes": 3.948859337310596,
+        "mean_error_at_30_minutes": -0.27993682882418575
+      },
+      "three_year": {
+        "players": 396,
+        "mae_at_30_minutes": 2.908001960111819,
+        "rmse_at_30_minutes": 3.7122735984734847,
+        "mean_error_at_30_minutes": -0.40572631180256047
+      }
+    },
+    "2026": {
+      "learned": {
+        "players": 397,
+        "mae_at_30_minutes": 2.932063692338762,
+        "rmse_at_30_minutes": 3.7877630076858284,
+        "mean_error_at_30_minutes": -0.08428933289880106
+      },
+      "last_season": {
+        "players": 397,
+        "mae_at_30_minutes": 3.1362880152093413,
+        "rmse_at_30_minutes": 4.0573037951352395,
+        "mean_error_at_30_minutes": -0.3876252657358901
+      },
+      "three_year": {
+        "players": 397,
+        "mae_at_30_minutes": 2.952940723177757,
+        "rmse_at_30_minutes": 3.8192942926623776,
+        "mean_error_at_30_minutes": -0.4863518117321099
+      }
+    }
+  },
+  "draft_summaries": {
+    "2025": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 22905.708333333332,
+        "mean_gain_pct_vs_espn": -0.05211750699439382,
+        "paired_win_rate": 0.5208333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9791666666666666,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "Rotoworld": {
+        "drafts": 48,
+        "mean_total_points": 22770.1875,
+        "mean_gain_pct_vs_espn": -0.40471583392654964,
+        "paired_win_rate": 0.4375,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 23014.625,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9809027777777778,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "learned_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 24079.854166666668,
+        "mean_gain_pct_vs_espn": 5.233419847387739,
+        "paired_win_rate": 0.6666666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 0.14583333333333334
+      },
+      "learned_per_game": {
+        "drafts": 48,
+        "mean_total_points": 21098.270833333332,
+        "mean_gain_pct_vs_espn": -7.9963358065082595,
+        "paired_win_rate": 0.14583333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0
+      },
+      "learned_total": {
+        "drafts": 48,
+        "mean_total_points": 23490.8125,
+        "mean_gain_pct_vs_espn": 2.577229024210537,
+        "paired_win_rate": 0.6041666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.16666666666666666
+      },
+      "prior_total": {
+        "drafts": 48,
+        "mean_total_points": 21533.541666666668,
+        "mean_gain_pct_vs_espn": -5.917256858203417,
+        "paired_win_rate": 0.22916666666666666,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.16666666666666666
+      }
+    },
+    "2026": {
+      "RotoWire": {
+        "drafts": 48,
+        "mean_total_points": 23319.270833333332,
+        "mean_gain_pct_vs_espn": 8.990466860084428,
+        "paired_win_rate": 0.7708333333333334,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 0.041666666666666664
+      },
+      "espn": {
+        "drafts": 48,
+        "mean_total_points": 21541.354166666668,
+        "mean_gain_pct_vs_espn": 0.0,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 1,
+        "mean_modeled_pick_share": 0.9670138888888888,
+        "mean_zero_games": 0.5625
+      },
+      "learned_next_turn": {
+        "drafts": 48,
+        "mean_total_points": 17769.145833333332,
+        "mean_gain_pct_vs_espn": -16.869841371774523,
+        "paired_win_rate": 0.10416666666666667,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 0.9982638888888888,
+        "mean_zero_games": 1.0208333333333333
+      },
+      "learned_per_game": {
+        "drafts": 48,
+        "mean_total_points": 9264.020833333334,
+        "mean_gain_pct_vs_espn": -56.60063845522962,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4
+      },
+      "learned_total": {
+        "drafts": 48,
+        "mean_total_points": 9649.5,
+        "mean_gain_pct_vs_espn": -54.83835658826457,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 4.0625
+      },
+      "prior_total": {
+        "drafts": 48,
+        "mean_total_points": 10652.854166666666,
+        "mean_gain_pct_vs_espn": -50.03285204528496,
+        "paired_win_rate": 0,
+        "paired_tie_rate": 0,
+        "mean_modeled_pick_share": 1.0,
+        "mean_zero_games": 3.75
+      }
+    }
+  },
+  "code_sha256": {
+    "empirical.py": "c048faaf1329dec583b0ec7f859b514b5810fc00cbb5f61c75ed099f72f7bd94",
+    "empirical_draft.py": "1c14bb8e02230841a631ce77d05bd7f0b87956ac7c57e0e8042cb9e22b96259c",
+    "planner.py": "1233f761f61298b08c349a6804f5379e7c5a652800a167a107cf970d9311bafa",
+    "source_backtest.py": "4c46328dbdc47320f10d0bd4cd4ba1d39ac93a9fa499d2c6e732c2e8e0f32f32",
+    "ranking_library.py": "6a936a01c7f8115359831aa5c7d48238448c97a21fd384b283531d89ebdc81b1",
+    "config.py": "b3cae2a7ef042ca069321ffa5fe1d7ac5b1bf25992797df62cf9aac323479161",
+    "strategy_lab.py": "384de8bd8794b4e546fb40a3361d0d8ab99e1fddcf090ee9b978cf4badfa4c36",
+    "backtest.py": "048224f9295a144cdbfc0ef9f449e03fde8d16562789c5eb28d2e8c2ee4302db",
+    "model.py": "f5d9261d710be638a2711e4c07ab85e1fada9c4989e642b4722be4a651fa9b5a"
+  },
+  "protocol_sha256": "1e4a8c27479069edb7d96292c6c4d245f63f4020de8855fceb9d66a997192f81",
+  "preseason_inputs": {
+    "2025": "99e27dd4c9f956eaccd098983283fe1466e6a321b64c3726cafda532ad2addf5",
+    "2026": "d5c96faec10f4989933eae60f40d5381ede026164f99c6bc7b012bc79627e01b"
+  },
+  "current_board": {
+    "as_of": "2026-10-17T16:50:20.610513-04:00",
+    "ranked": 317,
+    "modeled": 303,
+    "fallback": 14,
+    "base_input_sha256": "fcf0294ed0d202ad722c623b9995bc9d4c6b5ef0d484fb73acd382092f40110c",
+    "rankings_sha256": "8f509ec5f1be3dd09f8e643a06f4a447fdae2cb3684569bf02b17f7d49444b8b"
+  },
+  "fresh_independent_holdout": false,
+  "metric": "Drafted-roster actual season points, not weekly H2H wins"
+}

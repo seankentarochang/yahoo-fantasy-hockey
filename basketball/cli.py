@@ -40,6 +40,12 @@ def parser():
     ranks = sub.add_parser("rankings")
     ranks.add_argument("--limit", type=int, default=200)
     ranks.add_argument("--csv")
+    research = sub.add_parser("research", help="Comparison-only statistical board; never selects draft players")
+    research.add_argument("action", choices=("collect", "build", "datasets", "fit", "rank", "backtest", "value-backtest", "value-rank", "availability-backtest", "availability-rank", "injury-backtest", "injury-scoring-backtest", "expert-collect", "expert-backtest", "adp-mocks", "timing-mocks"))
+    research.add_argument("--years", nargs="+", type=int, help="Completed ending seasons for public game logs")
+    research.add_argument("--slot", type=int, help="ADP rehearsal snake slot; omit to test every position")
+    research.add_argument("--count", type=int, default=25, help="Seeds per ADP rehearsal position and field")
+    research.add_argument("--refresh-market", action="store_true", help="Refresh public ESPN ADP for rehearsals")
     sheet = sub.add_parser("cheatsheet")
     sheet.add_argument("--out", default="BASKETBALL_DRAFT_SHEET.md")
     for cmd in ("lineup", "stream"):
@@ -241,6 +247,39 @@ def standings(model):
 
 def run(args):
     cfg = load(args.config)
+    if args.command == "research":
+        if args.action == "timing-mocks":
+            from . import timing_lab
+            return timing_lab.run(cfg)
+        if args.action == "adp-mocks":
+            from . import adp_mocks
+            return adp_mocks.run(cfg, args.slot, args.count, args.refresh_market)
+        if args.action in {"expert-collect", "expert-backtest"}:
+            from . import expert_boards
+            return expert_boards.collect(cfg) if args.action == "expert-collect" else expert_boards.experiment(cfg)
+        if args.action == "injury-scoring-backtest":
+            from . import injury_scoring
+            return injury_scoring.experiment(cfg)
+        if args.action == "injury-backtest":
+            from . import injury_research
+            return injury_research.experiment(cfg)
+        if args.action in {"availability-backtest", "availability-rank"}:
+            from . import availability_research
+            return availability_research.experiment(cfg) if args.action=="availability-backtest" else availability_research.current(cfg)
+        if args.action in {"value-backtest", "value-rank"}:
+            from . import value_board
+            return value_board.backtest(cfg) if args.action=="value-backtest" else value_board.current(cfg)
+        if args.action in {"fit", "rank"}:
+            from . import empirical
+            return empirical.experiment(cfg) if args.action == "fit" else empirical.current_board(cfg)
+        if args.action == "backtest":
+            from . import empirical_draft
+            return empirical_draft.run(cfg)
+        if args.action == "datasets":
+            from . import research_data
+            return research_data.collect(cfg,args.years or list(range(cfg["season"]-3,cfg["season"])))
+        from . import research_board
+        return research_board.collect(cfg) if args.action == "collect" else research_board.build(cfg)
     if args.command == "draft" and args.action == "refresh-rankings":
         from .live_rankings import collect
         return collect(cfg)
