@@ -93,6 +93,9 @@ def parser():
     ds.add_parser("reset")
     ds.add_parser("status", help="Read live WebSocket draft state and pending command")
     ds.add_parser("bans", help="List persistent player and NBA team draft bans")
+    ds.add_parser("refresh-rankings", help="Capture and select the latest public RotoWire points cheat sheet")
+    returns = ds.add_parser("injuries", help="List sourced expected return dates; estimates are not guarantees")
+    returns.add_argument("--refresh", action="store_true")
     for action in ("ban", "unban"):
         rule = ds.add_parser(action, help="Add/remove a hard draft exclusion")
         rule.add_argument("kind", choices=("player", "team"))
@@ -238,6 +241,12 @@ def standings(model):
 
 def run(args):
     cfg = load(args.config)
+    if args.command == "draft" and args.action == "refresh-rankings":
+        from .live_rankings import collect
+        return collect(cfg)
+    if args.command == "draft" and args.action == "injuries":
+        from .injury_returns import catalog
+        return catalog(cfg, args.refresh)
     if args.command == "draft" and args.action == "watch" and args.strategy == "expert" and args.transport != "api":
         raise ValueError("Expert automatic drafting requires the API transport")
     if args.command == "draft" and args.action in {"bans", "ban", "unban"}:

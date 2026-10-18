@@ -16,6 +16,7 @@ class AvailabilityTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.cfg = load()
+        self.cfg['draft'].pop('injury_policy', None)  # Legacy explicit-review fixtures.
         self.cfg['_data'] = self.tmp.name
         self.at = datetime(2026, 10, 17, 12, tzinfo=timezone.utc)
         timer = patch('basketball.availability.now', return_value=self.at)

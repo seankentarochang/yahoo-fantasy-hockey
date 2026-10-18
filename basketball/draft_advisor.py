@@ -1,5 +1,6 @@
 """Explicitly selected, read-only current-season expert / market advisor."""
 from collections import defaultdict
+import re
 
 from . import availability, bans, drafting
 from .config import path, read_json, roster_size
@@ -22,12 +23,23 @@ def orders(model, source, library):
     published, details, completed = {}, [], {"espn": market}
     m = {pid: i for i, pid in enumerate(market)}
     for name in needed:
-        file = library / "boards" / f"{name}-{model.cfg['season']}.json"
+        selections = read_json(path(model.cfg, "draft-sources.json"), {})
+        if name == "rotowire" and model.cfg["draft"].get("selection_policy") == "next_turn" and name not in selections:
+            raise ValueError("Missing selected current RotoWire board; run draft refresh-rankings")
+        selected = selections.get(name, f"{name}-{model.cfg['season']}")
+        if not isinstance(selected, str) or not re.fullmatch(r"[a-z0-9-]+", selected):
+            raise ValueError("Invalid selected expert source ID")
+        file = library / "boards" / f"{selected}.json"
         board = read_json(file)
         if not board:
             raise ValueError(f"Missing collected current expert board: {file}")
-        checked_board(library, board)
+        if board.get("source", {}).get("parser") == "rotowire_cards":
+            from .live_rankings import validate
+            validate(model.cfg, library, board)
+        else:
+            checked_board(library, board)
         if (board["source"]["season"] != model.cfg["season"] or board["source"]["format"] != "points"
+                or board["source"].get("family") != {"rotowire": "RotoWire", "rotoworld": "Rotoworld", "fantrax": "FantraxHQ"}[name]
                 or board["status"] not in {"prospective", "preseason"}):
             raise ValueError("Advisor requires a verified current-season preseason points board")
         ranks, unresolved = {}, []
@@ -41,7 +53,7 @@ def orders(model, source, library):
             raise ValueError("No expert players matched the ESPN market pool")
         published[name] = ranks
         completed[name] = sorted(market, key=lambda p: (p not in ranks, ranks.get(p, m[p]), m[p], p))
-        details.append({"source": name, "family": board["source"]["family"], "url": board["source"]["url"],
+        details.append({"source": name, "source_id": selected, "family": board["source"]["family"], "url": board["source"]["url"],
                         "published_rows": len(board["rows"]), "matched_rows": len(ranks), "unresolved_or_no_market_rank": unresolved,
                         "retrieved_at": board["retrieved_at"], "board_sha256": board["board_sha256"]})
     if source == "consensus":
@@ -60,7 +72,11 @@ def legal_choices(model, order):
     gone = {p["player"] for p in picks}
     mine = [model.by_id[p["player"]] for p in picks if p["team"] == model.cfg["team_id"]]
     policy = bans.listing(model.cfg)
+    constraints = model.snapshot.get('draft_constraints', {})
+    rejected = set(constraints.get('rejected', []))
+    open_slots = constraints.get('open_slots')
     return [pid for pid in order if pid not in gone and model.by_id[pid]["owner"] in (0, model.cfg["team_id"])
+            and pid not in rejected and (open_slots is None or bool(set(open_slots) & set(model.by_id[pid]['eligible'])))
             and model.by_id[pid].get("active") is not False
             and not bans.reason(model.cfg, model.by_id[pid], policy=policy) and legal(model, mine, pid)]
 
@@ -71,12 +87,21 @@ def expert_board(model, source="rotowire", limit=20):
         raise ValueError("Expert drafting requires a points snake draft")
     quality, _, published, details = orders(model, source, path(model.cfg, "ranking-library"))
     ordinal = {pid: i+1 for i, pid in enumerate(quality)}
-    choices = legal_choices(model, quality)[:limit]
-    return {"strategy": "expert", "source": source, "sources": details, "availability_checked": False,
-            "players": [{"id": pid, "name": model.by_id[pid]["name"], "quality_order": ordinal[pid],
+    choices = legal_choices(model, quality)
+    rows = [{"id": pid, "name": model.by_id[pid]["name"], "quality_order": ordinal[pid],
                          "espn_rank": model.by_id[pid]["draft_rank"],
                          "published_expert_ranks": {name: ranks.get(pid) for name, ranks in published.items()}}
-                        for pid in choices]}
+            for pid in choices]
+    timing = None
+    deferred = []
+    if model.cfg["draft"].get("selection_policy") not in {None, "next_turn"}:
+        raise ValueError("Unknown expert selection policy")
+    if model.cfg["draft"].get("selection_policy") == "next_turn":
+        from .draft_timing import prioritize
+        urgent, deferred, timing = prioritize(model, rows)
+        rows = [dict(p, timing_tier="before_next_turn") for p in urgent] + [dict(p, timing_tier="likely_available_next_turn") for p in deferred]
+    return {"strategy": "expert", "source": source, "sources": details, "availability_checked": False,
+            "timing": timing, "deferred": deferred[:20], "players": rows[:limit] if limit is not None else rows}
 
 
 def board(model, source="consensus", slot=None, current=None, library=None, verify=False):

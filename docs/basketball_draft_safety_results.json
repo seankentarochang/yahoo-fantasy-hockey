@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-18",
+  "real_league_mutations": 0,
+  "focused_backend_tests": 69,
+  "new_safety_balance_tests": 15,
+  "first_room": {
+    "league_id": 406784783,
+    "picks": 192,
+    "api_receipts": 12,
+    "autopick_off": true,
+    "rejections": 0,
+    "native_selections_replayed": 192
+  },
+  "reproduction_room": {
+    "league_id": 814074095,
+    "picks": 192,
+    "unique_players": 192,
+    "api_receipts": 12,
+    "autopick_off": true,
+    "full_starter_coverage": true,
+    "pending": null,
+    "proof": {
+      "pick": 192,
+      "player": 4433192,
+      "name": "Tari Eason",
+      "open_slots": [
+        "G"
+      ],
+      "eligible": [
+        "SF",
+        "PF",
+        "F",
+        "SG/SF",
+        "G/F",
+        "PF/C",
+        "F/C",
+        "UTIL",
+        "BE",
+        "IR"
+      ],
+      "global_matching_legal": true,
+      "native_preflight_allowed": false
+    },
+    "deliberate_slot_bypass": true,
+    "server_refusal": {
+      "code": 1,
+      "reason": "invalid_selection"
+    },
+    "confirmed_substitute": {
+      "pick": 192,
+      "id": 5082206,
+      "name": "Brayden Burries"
+    },
+    "seconds_refused_intent_to_fallback_confirmation": 3.587593,
+    "roster": [
+      {
+        "name": "Nikola Jokic",
+        "teamId": 18,
+        "playerId": 3112335,
+        "slotId": 5,
+        "pickNumber": 1,
+        "bidAmount": 0
+      },
+      {
+        "name": "Jaylen Brown",
+        "teamId": 18,
+        "playerId": 3917376,
+        "slotId": 3,
+        "pickNumber": 32,
+        "bidAmount": 0
+      },
+      {
+        "name": "Kawhi Leonard",
+        "teamId": 18,
+        "playerId": 6450,
+        "slotId": 4,
+        "pickNumber": 33,
+        "bidAmount": 0
+      },
+      {
+        "name": "Walker Kessler",
+        "teamId": 18,
+        "playerId": 4433136,
+        "slotId": 8,
+        "pickNumber": 64,
+        "bidAmount": 0
+      },
+      {
+        "name": "Donovan Clingan",
+        "teamId": 18,
+        "playerId": 5105565,
+        "slotId": 9,
+        "pickNumber": 65,
+        "bidAmount": 0
+      },
+      {
+        "name": "Zach Edey",
+        "teamId": 18,
+        "playerId": 4600663,
+        "slotId": 10,
+        "pickNumber": 96,
+        "bidAmount": 0
+      },
+      {
+        "name": "Ryan Rollins",
+        "teamId": 18,
+        "playerId": 4591725,
+        "slotId": 2,
+        "pickNumber": 97,
+        "bidAmount": 0
+      },
+      {
+        "name": "Yaxel Lendeborg",
+        "teamId": 18,
+        "playerId": 5175737,
+        "slotId": 7,
+        "pickNumber": 128,
+        "bidAmount": 0
+      },
+      {
+        "name": "Ajay Mitchell",
+        "teamId": 18,
+        "playerId": 4900671,
+        "slotId": 1,
+        "pickNumber": 129,
+        "bidAmount": 0
+      },
+      {
+        "name": "Collin Murray-Boyles",
+        "teamId": 18,
+        "playerId": 5093267,
+        "slotId": 11,
+        "pickNumber": 160,
+        "bidAmount": 0
+      },
+      {
+        "name": "P.J. Washington",
+        "teamId": 18,
+        "playerId": 4278078,
+        "slotId": 12,
+        "pickNumber": 161,
+        "bidAmount": 0
+      },
+      {
+        "name": "Brayden Burries",
+        "teamId": 18,
+        "playerId": 5082206,
+        "slotId": 6,
+        "pickNumber": 192,
+        "bidAmount": 0
+      }
+    ]
+  },
+  "practice_clock_floor_seconds": 5,
+  "real_clock_floor_seconds": 25,
+  "balance_policy": {
+    "rank_gap": 3,
+    "start_round": 2,
+    "lookahead": 32
+  },
+  "native_input_sha256": {
+    "basketball\\data\\draft-slot-investigation\\runtime\\frames.jsonl": "c6ca32e5e8d5314861c540113d1f05725508baf56d3e04107194e0ba8b374a23",
+    "basketball\\data\\draft-slot-investigation\\native-recovery\\runtime\\frames.jsonl": "41bca6d58b9276d16c1f110adce12de8b06066a65a998154c11bfc7659b57948",
+    "basketball\\data\\draft-slot-investigation\\native-recovery\\runtime\\raw.json": "4cdd1d3170fe027343830fce4275f1558ed742a0c5427a41c583b24e4db81c81",
+    "basketball\\data\\draft-slot-investigation\\native-recovery\\runtime\\init.json": "0ef27444eea45d3b8f90b15c07fce68ec511feecd4d698f788c430f4992558d1"
+  },
+  "source_sha256_at_report": {
+    "basketball\\draft_api.py": "252073def9ca5367ed3decaf210855da3934d5608faf4eab31a5db058d4234b6",
+    "basketball\\draft_balance.py": "f5b173ee4ee03a6c2e54b37c78bda6f9a76579d829ea5b7dcf9f41adb1c19df9",
+    "basketball\\draft_advisor.py": "f76af2fccf06079ee648908ce36d03383824b9d176fb8d436201caa42ddf8896",
+    "basketball\\league.json": "82e102daf1380d69a3924ff29bf5dcd79ef731d98b250a850d546a5470f72291"
+  },
+  "note": "Scripted native transport and slot reproduction, not a scoring backtest. Practice-only clock/slot exceptions are not production code. Earlier nine refusals lack native slot evidence."
+}

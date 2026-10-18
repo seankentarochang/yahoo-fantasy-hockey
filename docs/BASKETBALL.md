@@ -127,12 +127,21 @@ minutes; actual draft writes force new reads. Stale/wrong-season/missing sources
 ambiguous player identity or absent current roster membership never clear a player.
 
 Inactive players and structured out-for-season injury designations are blocked.
-Other injuries, suspensions and conflicting fantasy status require review and
-are skipped by automatic drafting. A deliberate `review-risk` accepts only the
+The configured injury-price policy permits known short absences early and longer
+known absences late, without an injured-player count limit; see
+[the current draft policy](BASKETBALL_DRAFT_POLICY.md). Unknown or overdue return
+estimates, suspensions and conflicting fantasy teams still require review.
+A deliberate `review-risk` accepts only the
 exact verified concern for up to 24 hours; a changed status, return date or report
 invalidates it. Blocked/unknown players cannot be overridden through this command.
-The automatic watcher checks candidates in order among its first 20 legal
-recommendations, skips those without clearance, and stops if none is verified.
+The expert watcher checks its urgent demand tier in expert order, then uses the
+deferred tier only if no urgent candidate clears availability. The older model
+watcher checks its first 20 legal recommendations. No verified choice stops execution.
+
+`python -m basketball draft injuries --refresh` exports sourced estimates and
+provider commentary to `basketball/data/injury-returns.json` and `injury-returns.md`.
+`python -m basketball draft refresh-rankings` captures and selects the latest
+public RotoWire standard-points cheat sheet, preserving the older research files.
 
 This checks current reported participation, not future injury proneness. A player
 cleared here can still be injured later; data can be wrong even when fresh.
@@ -500,19 +509,27 @@ termination before removing that empty directory.
 ### Automatic expert drafting
 
 `python -m basketball draft watch --transport api --strategy expert --source rotowire --execute`
-selects the highest available player on the current expert board, subject to
-personal bans, starter coverage, position caps and current availability checks.
+selects from the current expert board, subject to the configured next-turn demand
+window, close-rank position scarcity, injury-price schedule, personal bans, starter coverage, position caps and
+current availability checks. See [the current policy](BASKETBALL_DRAFT_POLICY.md).
 It uses native API turn/clock checks, acknowledgement and recovery. The explicit
+selector also requires an open native draft slot: a whole-roster lineup can fit
+after rearrangement while ESPN still has no open slot for that candidate. Exact
+attributed Invalid Selection refusals are persisted and reconciled before the
+watcher chooses another verified candidate. Unknown or uncertain errors retain
+their journal and stop automatic writes. Autopick must be confirmed off. The explicit
 `expert` strategy uses the selected publisher; omitting it retains the previous
 model strategy. Expert automatic drafting supports only the API transport and
 never silently falls back when a source is missing. Legal expert rookies do not
 require a historical projection. `rotoworld`, `fantrax` and `consensus` can also
-be selected with `--source`. This is greedy expert order, not the timing hybrid.
+be selected with `--source`. Without `draft.selection_policy: next_turn`, the
+expert selector retains greedy ordering. The current next-turn rule is separate
+from the experimental timing hybrid below.
 
 The user's October 18 execution request and supervision details are recorded in
-[the draft handoff](BASKETBALL_DRAFT_HANDOFF.md). Availability checks may exclude
-injured players pending an existing explicit risk review. No risk acceptance is
-automatically created by the watcher.
+[the draft handoff](BASKETBALL_DRAFT_HANDOFF.md). Eligible injury estimates are
+recorded with the configured round policy; the watcher creates no manual risk
+acceptances. Unknown/inactive/season-out players and personal bans stay excluded.
 
 Mock rehearsals should use API selections and a visible (headed) browser, with
 Autopick verified off. ESPN disconnects the authenticated viewing tab when a
