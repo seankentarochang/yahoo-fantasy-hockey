@@ -107,3 +107,9 @@ with actual complete examples and per-position shortlists. Run
 `research adp-mocks --refresh-market`; supply `--slot N` to test one position.
 The documented ESPN ADP tail fallback and opponent noise are explicit assumptions,
 not calibrated human-choice probabilities. Live drafting remains separate.
+
+The [RotoWire timing and scarcity comparison](BASKETBALL_TIMING_LAB_RESULTS.md)
+tests six policies in 2,112 paired forward simulations across all 16 slots.
+Larger next-pick windows secure more RotoWire targets but lower ESPN projection
+proxies; the tested positional tiebreaker does not earn promotion. Run
+`research timing-mocks`. The scheduled RotoWire/ESPN timing strategy is unchanged.
